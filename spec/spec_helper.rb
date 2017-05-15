@@ -6,8 +6,8 @@ require 'database_cleaner'
 require 'rspec'
 require 'simplecov'
 require 'simplecov-console'
-require_relative '../app/app.rb'
-require './app/models/user'
+require_relative '../app.rb'
+require './models/user'
 require_relative "./web_helpers"
 
 Capybara.app = Makers_BNB
