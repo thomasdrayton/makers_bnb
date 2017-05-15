@@ -1,4 +1,5 @@
-require '../data_mapper_setup'
+require './data_mapper_setup'
+require_relative 'User'
 
 class Space
 
@@ -12,9 +13,8 @@ class Space
   property :price, Float
   property :description, Text
   # property :tags, String
-  property :startDate, DateTime
-  property :endDate, DateTime
+  property :startDate, Date
+  property :endDate, Date
   #Keep in mind possibility of extracting DateTime to seperate model at later date
-  belongs_to :user
-  # has n, :requests, :through => Resource
+  # belongs_to, :user
 end
