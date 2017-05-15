@@ -1,18 +1,20 @@
-#require 'dm-migrations'
-#require 'data_mapper'
-#require 'dm-postgres-adapter'
-
-#DataMapper::Logger.new($stdout, :debug)
-#DataMapper.setup(:default, "postgres://localhost/bookmark_manager_test_2")
+require '../data_mapper_setup'
 
 class Space
 
   include DataMapper::Resource
 
-property :id, Serial
-property :title, String
-
+  property :id, Serial
+  property :name, String
+  property :city, String
+  property :street, String
+  property :postcode, String
+  property :price, Float
+  property :description, Text
+  # property :tags, String
+  property :startDate, DateTime
+  property :endDate, DateTime
+  #Keep in mind possibility of extracting DateTime to seperate model at later date
+  belongs_to :user
+  # has n, :requests, :through => Resource
 end
-
-#DataMapper.finalize
-#DataMapper.auto_upgrade!

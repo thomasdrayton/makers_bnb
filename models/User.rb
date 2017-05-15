@@ -1,18 +1,32 @@
-#require 'dm-migrations'
-#require 'data_mapper'
-#require 'dm-postgres-adapter'
-
-#DataMapper::Logger.new($stdout, :debug)
-#DataMapper.setup(:default, "postgres://localhost/bookmark_manager_test_2")
+require 'bcrypt'
+require '../data_mapper_setup'
 
 class User
 
-  include DataMapper::Resource
+include DataMapper::Resource
+attr_reader :password
+attr_accessor :password_confirmation
+validates_confirmation_of :password
+
 
 property :id, Serial
-property :title, String
+property :name, String
+property :email, String, required: true, unique: true
+property :password_encrypt, Text
+validates_format_of :email, as: :email_address
+has n, :spaces, :through => Resource
 
+  def password=(password)
+    @password = password
+    self.password_encrypt = BCrypt::Password.create(password)
+  end
+
+  def self.authenticate(email, password)
+    user = first(email: email)
+    if user && BCrypt::Password.new(user.password_encrypt) == password
+      user
+    else
+      nil
+    end
+  end
 end
-
-#DataMapper.finalize
-#DataMapper.auto_upgrade!
