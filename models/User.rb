@@ -1,8 +1,5 @@
 require 'bcrypt'
-require 'data_mapper'
-require 'dm-postgres-adapter'
-require 'dm-migrations'
-
+require '../data_mapper_setup'
 
 class User
 
@@ -17,7 +14,7 @@ property :name, String
 property :email, String, required: true, unique: true
 property :password_encrypt, Text
 validates_format_of :email, as: :email_address
-# has n, :spaces, :through => Resource
+has n, :spaces, :through => Resource
 
   def password=(password)
     @password = password
@@ -33,7 +30,3 @@ validates_format_of :email, as: :email_address
     end
   end
 end
-
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/makers_bnb_#{ENV['RACK_ENV']}")
-DataMapper.finalize
-DataMapper.auto_upgrade!
