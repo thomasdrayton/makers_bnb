@@ -1,6 +1,13 @@
+ENV['RACK_ENV'] ||= 'development'
+require './models/User'
+require './models/Space'
 require 'sinatra/base'
+require 'sinatra/flash'
 
 class Makers_BNB < Sinatra::Base
+  register Sinatra::Flash
+  enable :sessions
+  set :session_secret, 'super secret'
 
   get '/' do
     #Homepage
@@ -8,21 +15,30 @@ class Makers_BNB < Sinatra::Base
   end
 
   get '/users/new' do
-    #Sign Up form
-    erb :sign_up
+    erb :'users/new'
   end
 
   post '/users' do
     @user = User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
     session[:user_id] = @user.id
     redirect 'users/main'
-    redirect 'users/main'
   end
 
   get '/sessions/new' do
-    erb :sign_in
-    # Goes to /users/main on sign in
+    erb :'sessions/new'
   end
+
+  post '/login' do
+    user = User.authenticate(params[:email], params[:password])
+   if user
+     session[:user_id] = user.id
+     redirect('/users/main')
+   else
+     flash.now[:errors] = ['Email or Password is incorrect']
+     erb(:'/sessions/new')
+   end
+ end
+
 
   get '/users/main' do
     erb :main
@@ -44,7 +60,7 @@ class Makers_BNB < Sinatra::Base
   end
 
   get'/spaces/new' do
-    @space = Space.create(name: params[:name], city: params[:city], street: params[:street], postcode: params[:postcode], price: params[:price], description: params[:description], startDate: params[:startDate], endDate: params[:endDate]) 
+    @space = Space.create(name: params[:name], city: params[:city], street: params[:street], postcode: params[:postcode], price: params[:price], description: params[:description], startDate: params[:startDate], endDate: params[:endDate])
     erb :'spaces/new'
   end
 
