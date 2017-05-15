@@ -18,17 +18,17 @@ class Makers_BNB < Sinatra::Base
   end
 
   get '/sessions/new' do
-    erb: sign_in
+    erb :sign_in
     # Goes to /users/main on sign in
   end
 
   get '/users/main' do
-    erb: main
+    erb :main
     # Account page. Create space and Rent Space links
   end
 
   get '/spaces'do
-    erb: spaces
+    erb :spaces
     # From the Rent Space link on users/main
   end
 
@@ -43,7 +43,7 @@ class Makers_BNB < Sinatra::Base
 
   get'/spaces/new' do
     #Form for adding new spaces
-    erb :'spaces/new'
+    erb :"spaces/new"
   end
 
   post'/spaces' do
