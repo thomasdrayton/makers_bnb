@@ -13,7 +13,9 @@ class Makers_BNB < Sinatra::Base
   end
 
   post '/users' do
-    #Users account page with New Space and Rent space links
+    @user = User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+    session[:user_id] = @user.id
+    redirect 'users/main'
     redirect 'users/main'
   end
 
@@ -42,12 +44,17 @@ class Makers_BNB < Sinatra::Base
   end
 
   get'/spaces/new' do
+<<<<<<< HEAD
     #Form for adding new spaces
     erb :"spaces/new"
+=======
+    @space = Space.create(name: params[:name], city: params[:city], street: params[:street], postcode: params[:postcode], price: params[:price], description: params[:description], startDate: params[:startDate], endDate: params[:endDate]) 
+    erb :'spaces/new'
+>>>>>>> e768677a6dc22972abb6e4104986697c2061e133
   end
 
   post'/spaces' do
-    #Spaces params
+
   end
 
   delete 'sessions/destroy' do
