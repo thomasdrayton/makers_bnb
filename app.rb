@@ -1,8 +1,9 @@
 ENV['RACK_ENV'] ||= 'development'
-require './models/User'
-require './models/Space'
+# require './models/User'
+# require './models/Space'
 require 'sinatra/base'
 require 'sinatra/flash'
+require './data_mapper_setup'
 
 class Makers_BNB < Sinatra::Base
   register Sinatra::Flash
