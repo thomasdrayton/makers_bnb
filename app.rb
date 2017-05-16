@@ -75,5 +75,12 @@ class Makers_BNB < Sinatra::Base
     redirect('/')
   end
 
+  helpers do
+    def current_user
+      @current_user ||= User.get(session[:user_id])
+    end
+  end
+end
+
   run! if app_file == $0
 end
