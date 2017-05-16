@@ -14,6 +14,12 @@
           <li><a href="/">Home</a></li>
           <li><a href="/sessions/new">Sign In</a></li>
           <li><a href="/users/new">Sign Up</a></li>
+          <li>
+            <form method='post' action='/sessions'>
+            <input type='hidden' name='_method' value='delete' class="form-control">
+            <input type='submit' value='Log Out'>
+            </form>
+          </li>
           <!-- <ul> -->
       </div>
     </div>

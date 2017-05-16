@@ -1,0 +1,35 @@
+  <div id="form">
+  <form action='/spaces' method='post' enctype="multipart/form-data" >
+
+    <label for="name">Name of Property</label>
+    <input type="text" name="name" id="name" placeholder="Property Name">
+
+    <label for="city">City</label>
+    <input type="text" name="city" id="city" placeholder="Property city">
+
+    <label for="street">Street Address</label>
+    <input type="text" name="street" id="street" placeholder="Property street">
+
+    <label for="postcode">Post Code</label>
+    <input type="text" name="postcode" id="postcode" placeholder="Property postcode">
+
+    <label for="price">Price Per Night</label>
+
+    <input type="number" name="price" id="price" placeholder="Property price per night">
+
+    <label for="description">Describe the property</label>
+    <textarea name="description" id="description">Enter property description</textarea>
+
+    <label for="start_date">Available from:</label>
+    <input type="date" id="start_date" name="start_date">
+
+    <label for="start_date">Available to:</label>
+    <input type="date" id="end_date" name="end_date">
+
+    <label for="file">Enter Property Photo</label>
+    <input type="file" id="file">
+
+    <input type="submit" value="Upload this space">
+  </form>
+
+</div>
