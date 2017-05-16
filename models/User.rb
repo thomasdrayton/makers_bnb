@@ -1,4 +1,4 @@
-require 'data_mapper'
+require 'bcrypt'
 
 class User
   include DataMapper::Resource
@@ -6,7 +6,8 @@ class User
   attr_accessor :password_confirmation
   validates_confirmation_of :password
 
-  has n, :spaces
+  has n, :spaces, :required => false
+  has n, :requests, :required => false
 
   property :id, Serial
   property :name, String
