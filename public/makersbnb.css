@@ -33,6 +33,12 @@ a:active { color: rgb(255, 0, 102) }
    background:rgba(255,255,255,0.5);
    width: 75%;
 }
+
+#centerDoc img {
+  display: block;
+  margin: 0 auto;
+}
+
 #navigation {
   float: right;
   line-height: 7-px;
