@@ -62,7 +62,7 @@ class Makers_BNB < Sinatra::Base
 
   get'/spaces/new' do
     @space = Space.create(name: params[:name], city: params[:city], street: params[:street], postcode: params[:postcode], price: params[:price], description: params[:description], startDate: params[:startDate], endDate: params[:endDate])
-    erb :'spaces/new'
+    erb :"spaces/new"
   end
 
   post'/spaces' do
@@ -70,7 +70,9 @@ class Makers_BNB < Sinatra::Base
   end
 
   delete 'sessions/destroy' do
-    #Sign out
+    session[:user_id] = nil
+    flash.keep[:notice] = "Thank you for visiting Chitter"
+    redirect('/')
   end
 
   run! if app_file == $0
