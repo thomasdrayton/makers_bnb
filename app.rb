@@ -47,7 +47,7 @@ class Makers_BNB < Sinatra::Base
   end
 
   get '/spaces'do
-    erb :spaces
+    erb :'spaces/index'
     # From the Rent Space link on users/main
   end
 
