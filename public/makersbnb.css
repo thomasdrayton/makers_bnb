@@ -12,6 +12,11 @@ a:visited { color: #1a8cff }
 a:hover { color: #80bfff }
 a:active { color: rgb(255, 0, 102) }
 
+#myCarousel img {
+    height: 600px;
+    
+}
+
 #container {
   max-width: 960px;
   width: 96%auto;
