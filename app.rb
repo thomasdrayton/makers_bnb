@@ -9,7 +9,7 @@ class Makers_BNB < Sinatra::Base
 
   get '/users/new' do
     #Sign Up form
-    erb :sign_up
+    erb :'users/new'
   end
 
   post '/users' do
@@ -44,13 +44,10 @@ class Makers_BNB < Sinatra::Base
   end
 
   get'/spaces/new' do
-<<<<<<< HEAD
     #Form for adding new spaces
     erb :"spaces/new"
-=======
-    @space = Space.create(name: params[:name], city: params[:city], street: params[:street], postcode: params[:postcode], price: params[:price], description: params[:description], startDate: params[:startDate], endDate: params[:endDate]) 
-    erb :'spaces/new'
->>>>>>> e768677a6dc22972abb6e4104986697c2061e133
+    @space = Space.create(name: params[:name], city: params[:city], street: params[:street], postcode: params[:postcode], price: params[:price], description: params[:description], startDate: params[:startDate], endDate: params[:endDate])
+
   end
 
   post'/spaces' do
