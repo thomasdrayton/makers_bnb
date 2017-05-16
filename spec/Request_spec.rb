@@ -13,14 +13,24 @@ describe Request do
   end
 
   let!(:request) do
-    Request.create(startDateReq: 15/05/2017, endDateReq: 15/05/ 2017, confirmed: false, space_id: space.id, user_id: userrenter.id)
+    p "space id is: ", space.id
+    Request.create(startDateReq: 15/05/2017, endDateReq: 15/05/2017, confirmed: false, space_id: space.id, user_id: userrenter.id)
   end
 
   # it 'knows who owns the property for the request' do
+  #   p space
   #   expect(request.space.user.name).to eq "Bertie"
   # end
 
+  it 'shows you request' do
+    p request
+  end
+
   it 'knows who sent the request' do
     expect(request.user.name).to eq 'Tom'
+  end
+
+  it 'Has and ID' do
+    expect(request.id).not_to be_nil
   end
 end

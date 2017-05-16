@@ -1,10 +1,12 @@
+require 'date'
+
 describe Space do
   let!(:user) do
     User.create(name: 'Bertie', email: 'Test.email@test.com', password: 'Password1234', password_confirmation: 'Password1234')
   end
 
   let!(:space) do
-    Space.create(id: 1, name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'E1 6LT', price: 72.06, description: "It's a flat mate", startDate: 15 / 0o5 / 2017, endDate: 19 / 0o5 / 2017, user_id: user.id)
+    Space.create(name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'E1 6LT', price: 72.06, description: "It's a flat mate", startDate: Date.new(2001,1,2), endDate: Date.new(2001,3,4), user_id: user.id)
   end
 
   it 'Knows its city' do
@@ -16,6 +18,7 @@ describe Space do
   end
 
   it 'Has an ID' do
+    p space
     expect(space.id).not_to be_nil
   end
 

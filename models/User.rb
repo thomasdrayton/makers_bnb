@@ -6,8 +6,8 @@ class User
   attr_accessor :password_confirmation
   validates_confirmation_of :password
 
-  has n, :spaces, :required => false
-  has n, :requests, :required => false
+  has n, :spaces
+  has n, :requests
 
   property :id, Serial
   property :name, String
