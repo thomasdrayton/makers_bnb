@@ -1,16 +1,21 @@
 ENV['RACK_ENV'] = 'test'
 
+require 'data_mapper'
 require 'capybara'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'rspec'
 require 'simplecov'
 require 'simplecov-console'
-require_relative '../app.rb'
-require './models/user'
+require './app'
 
+require './models/User'
+require './models/Space'
+
+require './data_mapper_setup'
 
 Capybara.app = Makers_BNB
+
 DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean
 
