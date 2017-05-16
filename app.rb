@@ -43,7 +43,7 @@ class Makers_BNB < Sinatra::Base
 
   get '/users/main' do
     erb :main
-    # Account page. Create space and Rent Space links
+    # Account page. Create space and Rent Space links.
   end
 
   get '/spaces'do
