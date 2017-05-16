@@ -1,4 +1,9 @@
 require 'sinatra/base'
+<<<<<<< HEAD
+=======
+require 'sinatra/flash'
+require './data_mapper_setup'
+>>>>>>> 3e66b5473d70cc7fcc9d725315fcfed96c6ada4d
 
 class Makers_BNB < Sinatra::Base
 
@@ -13,10 +18,16 @@ class Makers_BNB < Sinatra::Base
   end
 
   post '/users' do
+<<<<<<< HEAD
     @user = User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
     session[:user_id] = @user.id
     redirect 'users/main'
     redirect 'users/main'
+=======
+    user = User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+    session[:user_id] = user.id
+    redirect '/'
+>>>>>>> 3e66b5473d70cc7fcc9d725315fcfed96c6ada4d
   end
 
   get '/sessions/new' do
@@ -26,7 +37,7 @@ class Makers_BNB < Sinatra::Base
 
   get '/users/main' do
     erb :main
-    # Account page. Create space and Rent Space links
+    # Account page. Create space and Rent Space links.
   end
 
   get '/spaces'do

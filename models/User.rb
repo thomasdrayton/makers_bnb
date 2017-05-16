@@ -1,20 +1,20 @@
-require 'bcrypt'
-require '../data_mapper_setup'
+require 'data_mapper'
 
 class User
 
-include DataMapper::Resource
-attr_reader :password
-attr_accessor :password_confirmation
-validates_confirmation_of :password
+  include DataMapper::Resource
+  attr_reader :password
+  attr_accessor :password_confirmation
+  validates_confirmation_of :password
 
+  has n, :spaces
 
-property :id, Serial
-property :name, String
-property :email, String, required: true, unique: true
-property :password_encrypt, Text
-validates_format_of :email, as: :email_address
-has n, :spaces, :through => Resource
+  property :id, Serial
+  property :name, String
+  property :email, String, required: true, unique: true
+  property :password_encrypt, Text
+  validates_format_of :email, as: :email_address
+
 
   def password=(password)
     @password = password

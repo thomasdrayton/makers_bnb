@@ -1,8 +1,8 @@
-require '../data_mapper_setup'
-
 class Space
 
   include DataMapper::Resource
+
+  belongs_to :user
 
   property :id, Serial
   property :name, String
@@ -11,10 +11,6 @@ class Space
   property :postcode, String
   property :price, Float
   property :description, Text
-  # property :tags, String
-  property :startDate, DateTime
-  property :endDate, DateTime
-  #Keep in mind possibility of extracting DateTime to seperate model at later date
-  belongs_to :user
-  # has n, :requests, :through => Resource
+  property :startDate, Date
+  property :endDate, Date
 end
