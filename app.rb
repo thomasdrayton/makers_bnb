@@ -3,6 +3,7 @@ require './models/User'
 require './models/Space'
 require 'sinatra/base'
 require 'sinatra/flash'
+require './data_mapper_setup'
 
 class Makers_BNB < Sinatra::Base
   register Sinatra::Flash
@@ -19,9 +20,9 @@ class Makers_BNB < Sinatra::Base
   end
 
   post '/users' do
-    @user = User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
-    session[:user_id] = @user.id
-    redirect 'users/main'
+    user = User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+    session[:user_id] = user.id
+    redirect '/'
   end
 
   get '/sessions/new' do
