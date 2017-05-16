@@ -1,7 +1,6 @@
 require 'data_mapper'
 
 class User
-
   include DataMapper::Resource
   attr_reader :password
   attr_accessor :password_confirmation
@@ -15,7 +14,6 @@ class User
   property :password_encrypt, Text
   validates_format_of :email, as: :email_address
 
-
   def password=(password)
     @password = password
     self.password_encrypt = BCrypt::Password.create(password)
@@ -23,10 +21,6 @@ class User
 
   def self.authenticate(email, password)
     user = first(email: email)
-    if user && BCrypt::Password.new(user.password_encrypt) == password
-      user
-    else
-      nil
-    end
+    user if user && BCrypt::Password.new(user.password_encrypt) == password
   end
 end

@@ -1,9 +1,36 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/bertz/Projects/Makers_BnB/makers_bnb/spec/Space_spec.rb": [
+      "/Users/bertz/Projects/Makers_BnB/makers_bnb/spec/Request_spec.rb": [
+        null,
+        1,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
         1,
         null,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/bertz/Projects/Makers_BnB/makers_bnb/spec/Space_spec.rb": [
+        1,
         1,
         2,
         null,
@@ -63,6 +90,6 @@
         null
       ]
     },
-    "timestamp": 1494931232
+    "timestamp": 1494938229
   }
 }

@@ -11,7 +11,7 @@ class Makers_BNB < Sinatra::Base
   set :session_secret, 'super secret'
 
   get '/' do
-    #Homepage
+    # Homepage
     erb :index
   end
 
@@ -31,33 +31,32 @@ class Makers_BNB < Sinatra::Base
 
   post '/login' do
     user = User.authenticate(params[:email], params[:password])
-   if user
-     session[:user_id] = user.id
-     redirect('/users/main')
-   else
-     flash.now[:errors] = ['Email or Password is incorrect']
-     erb(:'/sessions/new')
-   end
- end
-
+    if user
+      session[:user_id] = user.id
+      redirect('/users/main')
+    else
+      flash.now[:errors] = ['Email or Password is incorrect']
+      erb(:'/sessions/new')
+    end
+  end
 
   get '/users/main' do
     erb :main
     # Account page. Create space and Rent Space links.
   end
 
-  get '/spaces'do
+  get '/spaces' do
     erb :spaces
     # From the Rent Space link on users/main
   end
 
   get '/space/rent' do
-    #Click on a space you want to rent. Get taken to this form where you fill in what dates you want to rent or calander
+    # Click on a space you want to rent. Get taken to this form where you fill in what dates you want to rent or calander
   end
 
   post'rent_request' do
-    #Post form for rent request
-    #Redirect to /users/main
+    # Post form for rent request
+    # Redirect to /users/main
   end
 
   get'/spaces/new' do
@@ -66,12 +65,11 @@ class Makers_BNB < Sinatra::Base
   end
 
   post'/spaces' do
-
   end
 
   delete 'sessions/destroy' do
     session[:user_id] = nil
-    flash.keep[:notice] = "Thank you for visiting Chitter"
+    flash.keep[:notice] = 'Thank you for visiting Chitter'
     redirect('/')
   end
 
@@ -80,7 +78,6 @@ class Makers_BNB < Sinatra::Base
       @current_user ||= User.get(session[:user_id])
     end
   end
-end
 
-  run! if app_file == $0
+  run! if app_file == $PROGRAM_NAME
 end
