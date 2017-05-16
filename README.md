@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 MAKERS B'N'B
 
 Creating a web app which will allow Users to list spaces they have available for rent.
@@ -7,7 +6,7 @@ Will also allow Users to rent available spaces from other Users.
 
 App written using Ruby 2.4.1
 Additional gems required in Gemfile
-=======
+
 # MAKERS B'N'B
 
 Creating a web app which will allow Users to list spaces they have available for rent. Will also allow Users to rent available spaces from other Users.
@@ -52,4 +51,4 @@ I would like for only one user to be able to book a space each night
 As a user looking to rent a space
 So that I can still try and book a space for the night
 I would like to be able to submit rent requests for spaces until a request has been confirmed.
->>>>>>> bb67dcc40921d00472bddc188321e8209ae02b9e
+```
