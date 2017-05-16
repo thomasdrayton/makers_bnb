@@ -3,10 +3,25 @@
 <link rel="stylesheet" type="text/css" href="/makersbnb.css">
 </head>
 <body>
-
+  <div id="container">
+    <div id="header">
+      <div id="logo">
+        <a href="/"><img src="/images/mbnb_blue.png" width="200" alt="Makers BNB" title="Makers BNB"></a>
+      </div>
+      <div id="navigation">
+        <!-- <ul> -->
+          <li><a href="/">Home</a></li>
+          <li><a href="/sessions/new">Sign In</a></li>
+          <li><a href="/users/new">Sign Up</a></li>
+          <!-- <ul> -->
+      </div>
+    </div>
+  </div>
+  <div id="centerDoc">
   <div>
     <%= yield %>
   </div>
-
+</div>
+  <div id="test_logo"></div>
 </body>
 </html>

@@ -4,9 +4,9 @@ feature 'Navigation' do
 
     expect {
     visit '/'
-    expect(page).to have_link 'Sign in'
-    expect(page).to have_link 'Sign up'
-    click_link 'Sign up'
+    expect(page).to have_link 'Sign In'
+    expect(page).to have_link 'Sign Up'
+    click_link 'Sign Up'
     expect(page).to have_content 'Name'
     fill_in :name, with: 'Antother'
     fill_in :email, with: 'User@email.com'
