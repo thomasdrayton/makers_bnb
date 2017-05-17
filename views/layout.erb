@@ -19,6 +19,7 @@
         <!-- <ul> -->
           <li><a href="/">Home</a></li>
           <% if current_user %> <!-- if you are logged in-->
+          <li><a href="/spaces/new">Upload a new space</a></li>
           <li>
             <form method='post' action='/sessions'>
               <input type='hidden' name='_method' value='delete'>
