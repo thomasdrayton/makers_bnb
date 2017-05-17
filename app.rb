@@ -4,6 +4,8 @@ ENV['RACK_ENV'] ||= 'development'
 require 'sinatra/base'
 require 'sinatra/flash'
 require './data_mapper_setup'
+require './helpers/helper'
+
 
 class Makers_BNB < Sinatra::Base
   register Sinatra::Flash
