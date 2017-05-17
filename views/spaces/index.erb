@@ -3,9 +3,17 @@
 
 
   <% @spaces.each do |space| %>
-  <p><%= space.name %></p>
-  <p><%= space.city %></p>
-  <p><%= space.price %></p>
-  <p><%= space.startDate %></p>
-  <p><%= space.endDate %></p>
+
+
+<p>This property belongs to <%= space.user.name %></p>
+<p><%= space.name %></p>
+<p><%= space.city %></p>
+<p><%= space.price %></p>
+<p>Available From<%= space.startDate %></p>
+<p>Available To<%= space.endDate %></p>
+
+
+  <img src="<= space.image =>" alt ="">
+
+
   <% end %>
