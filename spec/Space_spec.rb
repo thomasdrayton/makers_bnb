@@ -18,7 +18,6 @@ describe Space do
   end
 
   it 'Has an ID' do
-    p space
     expect(space.id).not_to be_nil
   end
 
