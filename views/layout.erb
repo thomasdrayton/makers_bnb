@@ -1,12 +1,76 @@
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/makersbnb.css">
+  <link rel="stylesheet" type="text/css" href="/makersbnb.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 <body>
+  <div id="container">
 
+
+    <div id="header">
+      <div id="logo">
+        <a href="/"><img src="/images/mbnb_blue.png" width="200" alt="Makers BNB" title="Makers BNB"></a>
+      </div>
+      <div id="navigation">
+        <!-- <ul> -->
+          <li><a href="/">Home</a></li>
+          <% if current_user %> <!-- if you are logged in-->
+          <li><a href="/spaces/new">Upload a new space</a></li>
+          <li>
+            <form method='post' action='/sessions'>
+              <input type='hidden' name='_method' value='delete'>
+              <input type='submit' value='Log Out'>
+            </form>
+          </li>
+          <!-- <ul> -->
+          <li id="hiUser"> Hi <%= current_user.name %> </li>
+          <% else %> <!-- if you are NOT logged in-->
+          <li><a href="/sessions/new">Sign In</a></li>
+          <li><a href="/users/new">Sign Up</a></li>
+          <% end %>
+      </div>
+    </div>
+  </div>
+
+      <!-- <% if flash[:notice] %>
+      <div id='notice'>
+      <%= flash[:notice] %>
+      </div>
+      <% end %> -->
+
+      <% if flash[:errors] && !flash[:errors].empty? %>
+      Please refer to the following errors below:
+      <ul id='errors' style="list-style: none;">
+      <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+      <% end %>
+      </ul>
+      <% end %>
+
+
+  <div id="centerDoc">
+  <div>
+    <%= yield %>
+  </div>
+</div>
+
+    <div id="logo">
+      <a href="/"><img src="/images/mbnb_blue.png" width="200" alt="Makers BNB" title="Makers BNB"></a>
+    </div>
+    <div id="navigation">
+      <li>Home</li>
+      <li>Sign In</li>
+    </div>
+  </div>
   <div>
     <%= yield %>
   </div>
 
+  <div id="test_logo"></div>
 </body>
 </html>
