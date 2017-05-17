@@ -17,6 +17,19 @@
       </div>
       <div id="navigation">
         <!-- <ul> -->
+
+
+
+        <% if current_user %>
+        <h1> <%= current_user.name %> </h1>
+        <% end %>
+
+
+
+
+        <h1> <%= current_user.name %> </h1>
+
+
           <li><a href="/">Home</a></li>
           <li><a href="/sessions/new">Sign In</a></li>
           <li><a href="/users/new">Sign Up</a></li>
