@@ -1,11 +1,17 @@
+
+ENV['RACK_ENV'] ||= 'development'
 require 'sinatra/base'
-<<<<<<< HEAD
-=======
+require 'date'
 require 'sinatra/flash'
 require './data_mapper_setup'
->>>>>>> 3e66b5473d70cc7fcc9d725315fcfed96c6ada4d
+require './helpers/helper'
+
 
 class Makers_BNB < Sinatra::Base
+  register Sinatra::Flash
+  enable :sessions
+  set :session_secret, 'super secret'
+  use Rack::MethodOverride
 
   get '/' do
     #Homepage
@@ -18,16 +24,9 @@ class Makers_BNB < Sinatra::Base
   end
 
   post '/users' do
-<<<<<<< HEAD
     @user = User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
     session[:user_id] = @user.id
     redirect 'users/main'
-    redirect 'users/main'
-=======
-    user = User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
-    session[:user_id] = user.id
-    redirect '/'
->>>>>>> 3e66b5473d70cc7fcc9d725315fcfed96c6ada4d
   end
 
   get '/sessions/new' do
@@ -35,13 +34,26 @@ class Makers_BNB < Sinatra::Base
     # Goes to /users/main on sign in
   end
 
+  post '/sessions' do
+    user = User.authenticate(params[:email], params[:password])
+   if user
+     session[:user_id] = user.id
+     redirect('/users/main')
+   else
+     flash.now[:errors] = ['Email or Password is incorrect']
+     erb(:'/sessions/new')
+   end
+ end
+
+
   get '/users/main' do
-    erb :main
-    # Account page. Create space and Rent Space links.
+    erb :'users/main'
+    # Account page. Create space and Rent Space links
   end
 
   get '/spaces'do
-    erb :spaces
+    @spaces = Space.all
+    erb :'spaces/index'
     # From the Rent Space link on users/main
   end
 
@@ -55,18 +67,33 @@ class Makers_BNB < Sinatra::Base
   end
 
   get'/spaces/new' do
-    #Form for adding new spaces
-    erb :"spaces/new"
-    @space = Space.create(name: params[:name], city: params[:city], street: params[:street], postcode: params[:postcode], price: params[:price], description: params[:description], startDate: params[:startDate], endDate: params[:endDate])
-
+    erb :'spaces/new'
   end
 
   post'/spaces' do
-
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
+    space = Space.create(user_id: current_user.id, name: params[:name],
+    city: params[:city], street: params[:street],
+    postcode: params[:postcode], price: params[:price],
+    description: params[:description], startDate: params[:start_date],
+    endDate: params[:end_date])
+    # params[:tags].split.each { |tag|
+    #   space.tags << Tag.first_or_create(name: tag)
+    # }
+    space.save
+    redirect '/spaces'
   end
 
-  delete 'sessions/destroy' do
-    #Sign out
+  delete '/sessions' do
+    email = current_user.email
+    session[:user_id] = nil
+    flash.keep[:notice] = "Goodbye #{email}"
+    redirect '/sessions/logout'
+  end
+
+  get '/sessions/logout' do
+    erb :'sessions/logout'
   end
 
   run! if app_file == $0

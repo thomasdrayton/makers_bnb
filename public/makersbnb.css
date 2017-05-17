@@ -12,11 +12,25 @@ a:visited { color: #1a8cff }
 a:hover { color: #80bfff }
 a:active { color: rgb(255, 0, 102) }
 
+#myCarousel img {
+    height: 600px;
+    
+}
+
+
 #container {
   max-width: 960px;
   width: 96%auto;
   margin:auto;
 }
+
+
+#header {
+  background: #fff;
+  margin-top: 10px;
+}
+
+
 /*#test_logo {
   background-image: url("/images/mbnb_blue.png");
   width: 200px
@@ -26,6 +40,7 @@ a:active { color: rgb(255, 0, 102) }
   background-image: url("/images/mbnb_red.png");
   width: 200px
 }*/
+
 
 #centerDoc {
    /*position: absolute;*/
@@ -37,9 +52,44 @@ a:active { color: rgb(255, 0, 102) }
    background:rgba(255,255,255,0.5);
    width: 75%;
 }
+
+#centerDoc img {
+  display: block;
+  margin: 0 auto;
+}
+
+#navigation {
+  float: right;
+  line-height: 7-px;
+  /*font-family: "futura-pt";*/
+}
+
+#navigation li {
+  display: inline-block;
+  padding: 5px 20px;
+  margin-left: 10px;
+  background: #f3f3f3;
+  line-height: normal;
+}
+
+#logo {
+/*background-image: url("/images/mbnb_blue.png");*/
+/*width: 200px*/
+float: left;
+margin-top: 10px;
+}
+
+/*#test_logo:hover {
+background-image: url("/images/mbnb_red.png");
+width: 200px
+}*/
+
+
+
 #navigation {
   /*font-family: "futura-pt";*/
 }
+
 #form {
   margin-left: auto;
   margin-right: auto;
@@ -48,6 +98,9 @@ a:active { color: rgb(255, 0, 102) }
   background-color: #f2f2f2;
   padding: 20px;
 }
+
+textarea {
+    height: 30%;
 input[type=text], select {
     width: 100%;
     padding: 12px 20px;
@@ -57,6 +110,10 @@ input[type=text], select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+
+input[type=file], select {
+
 input[type=password], select {
     width: 100%;
     padding: 12px 20px;
@@ -66,6 +123,47 @@ input[type=password], select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+input[type=date], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=number], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=password], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
 input[type=submit] {
     width: 100%;
     background-color: #1a8cff;

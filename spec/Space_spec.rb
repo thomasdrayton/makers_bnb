@@ -12,7 +12,7 @@ describe Space do
     expect(space.city).to eq "London"
   end
 
-  it 'Knows its parent' do
+  it 'Knows the user it belongs to' do
     expect(space.user.name).to eq "Bertie"
   end
 end

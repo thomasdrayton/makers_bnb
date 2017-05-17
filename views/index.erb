@@ -1,12 +1,41 @@
-<html>
-<head>
-  <div>
-  <h5>
-    <a href="/sessions/new">Sign in</a>
-    <a href="/users/new">Sign up</a>
-  </h5>
-</div>
+<img src="/images/mbnb_blue.png" width="50%" alt="Makers BNB" title="Makers BNB">
 
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="http://bit.ly/2r8SAQP" alt="Los Angeles">
+      <div class="carousel-caption">
+        <h3>London</h3>
+        <p>Buckingham Palace - meet the queen!</p>
+        <a href="/requests/new/<%= 24 %>">Book this property</a>
+
+      </div>
+    </div>
+
+
+    <div class="item">
+      <img src="http://bit.ly/2rnHFQr" alt="Chicago">
+      <div class="carousel-caption">
+        <h3>Wooden shack</h3>
+        <p>For that rustic feel!</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="http://dailym.ai/2pHbvlN" alt="New York">
+      <div class="carousel-caption">
+        <h3>Sleep under the stars</h3>
+        <p>...but mind the needles!</p>
+      </div>
+    </div>
 
 <div><h1>Beds'N'Breakfasts</h1></div>
 <div><h4><a href="/spaces">Find a bed n breakfast</a></h4></div>
@@ -14,9 +43,16 @@
   <div class="container-1">
       <span class="icon"><i class="fa fa-search"></i></span>
       <input type="search" id="search" placeholder="Search..." />
-  </div>
-</div> -->
-<div><img src="http://bit.ly/2r8SAQP"></div>
 
-</head>
-</html>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
