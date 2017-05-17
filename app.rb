@@ -50,7 +50,24 @@ class Makers_BNB < Sinatra::Base
   get '/spaces'do
     @spaces = Space.all
     erb :'spaces/index'
-    # From the Rent Space link on users/main
+  end
+
+  post '/requests' do
+
+    space = Space.get(params[:space_id])
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
+    request = Request.create(startDateReq: start_date, endDateReq: end_date,
+    user_id: params[:user_id], space_id: space.id, confirmed: false)
+
+    if request.save
+      request.text_owner_of(space, request)
+      flash.keep[:notice] = "Your booking was successfully made #{request.user.name}"
+      redirect '/spaces'
+    else
+      flash.keep[:notice] = "Sorry something went wrong"
+      redirect '/spaces'
+    end
   end
 
   get '/space/rent' do
@@ -64,6 +81,11 @@ class Makers_BNB < Sinatra::Base
 
   get'/spaces/new' do
     erb :'spaces/new'
+  end
+
+  get '/requests/new/:id' do
+    @space = Space.get(params[:id])
+    erb :'requests/new'
   end
 
   post'/spaces' do
@@ -88,7 +110,9 @@ class Makers_BNB < Sinatra::Base
     redirect '/sessions/logout'
   end
 
-
+  get '/session/logout' do
+    erb :'session/logout'
+  end
 
   helpers do
     def current_user
