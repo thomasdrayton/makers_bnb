@@ -1,2 +1,11 @@
 <p>This is speces Index</p>
-<p>There are: <%= @spaces.count %><p>
+<p>There are: <%= @spaces.count %> spaces available<p>
+
+
+  <% @spaces.each do |space| %>
+  <p><%= space.name %></p>
+  <p><%= space.city %></p>
+  <p><%= space.price %></p>
+  <p><%= space.startDate %></p>
+  <p><%= space.endDate %></p>
+  <% end %>
