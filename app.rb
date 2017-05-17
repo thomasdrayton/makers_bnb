@@ -92,9 +92,11 @@ class Makers_BNB < Sinatra::Base
     redirect '/sessions/logout'
   end
 
-  get '/sessions/logout' do
-    erb :'sessions/logout'
-  end
 
+
+  helpers do
+    def current_user
+      @current_user ||= User.get(session[:user_id])
+    end
   run! if app_file == $0
 end
