@@ -14,12 +14,10 @@ class Makers_BNB < Sinatra::Base
   use Rack::MethodOverride
 
   get '/' do
-    #Homepage
     erb :index
   end
 
   get '/users/new' do
-    #Sign Up form
     erb :'users/new'
   end
 
@@ -30,8 +28,7 @@ class Makers_BNB < Sinatra::Base
   end
 
   get '/sessions/new' do
-    erb :sessions/new
-    # Goes to /users/main on sign in
+    erb :'sessions/new'
   end
 
   post '/sessions' do
@@ -41,10 +38,9 @@ class Makers_BNB < Sinatra::Base
      redirect('/users/main')
    else
      flash.now[:errors] = ['Email or Password is incorrect']
-     erb(:'/sessions/new')
+     erb :'/sessions/new'
    end
  end
-
 
   get '/users/main' do
     erb :'users/main'

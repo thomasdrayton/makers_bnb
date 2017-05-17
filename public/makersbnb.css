@@ -14,7 +14,7 @@ a:active { color: rgb(255, 0, 102) }
 
 #myCarousel img {
     height: 600px;
-    
+
 }
 
 
@@ -73,16 +73,9 @@ a:active { color: rgb(255, 0, 102) }
 }
 
 #logo {
-/*background-image: url("/images/mbnb_blue.png");*/
-/*width: 200px*/
 float: left;
 margin-top: 10px;
 }
-
-/*#test_logo:hover {
-background-image: url("/images/mbnb_red.png");
-width: 200px
-}*/
 
 
 
@@ -101,7 +94,6 @@ width: 200px
 
 textarea {
     height: 30%;
-input[type=text], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -113,8 +105,6 @@ input[type=text], select {
 
 
 input[type=file], select {
-
-input[type=password], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -177,10 +167,3 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: #80bfff;
 }
-
-/*div {
-    width: 90%;
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}*/
