@@ -88,6 +88,9 @@ class Makers_BNB < Sinatra::Base
     redirect '/sessions/logout'
   end
 
+  get '/sessions/logout' do
+    erb :'session/logout'
+  end
 
 
   helpers do
