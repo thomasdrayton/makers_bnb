@@ -16,7 +16,7 @@ describe Request do
 
     let!(:request) do
       Request.create(startDateReq: 15/05/2017, endDateReq: 15/05/ 2017, confirmed: false, space_id: space.id, user_id: userrenter.id)
-    end    
+    end
   end
 
 
