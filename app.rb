@@ -11,6 +11,7 @@ class Makers_BNB < Sinatra::Base
   register Sinatra::Flash
   enable :sessions
   set :session_secret, 'super secret'
+  use Rack::MethodOverride
 
   get '/' do
     #Homepage
@@ -31,7 +32,7 @@ class Makers_BNB < Sinatra::Base
     erb :'sessions/new'
   end
 
-  post '/login' do
+  post '/sessions' do
     user = User.authenticate(params[:email], params[:password])
    if user
      session[:user_id] = user.id
@@ -71,8 +72,12 @@ class Makers_BNB < Sinatra::Base
 
   end
 
-  delete 'sessions/destroy' do
-    #Sign out
+  delete '/sessions' do
+    email = current_user.email
+    session[:user_id] = nil
+    flash.keep[:notice] = "Goodbye #{email}"
+    redirect '/'
+    erb :'index'
   end
 
   run! if app_file == $0

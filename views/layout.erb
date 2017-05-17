@@ -17,35 +17,40 @@
       </div>
       <div id="navigation">
         <!-- <ul> -->
-
-
-
-
-        <% if current_user %>
-        <h1> Hi <%= current_user.name %> </h1>
-
-
-
-
-        <% end %>
-
-
-
-
-
           <li><a href="/">Home</a></li>
-          <li><a href="/sessions/new">Sign In</a></li>
-          <li><a href="/users/new">Sign Up</a></li>
+          <% if current_user %> <!-- if you are logged in-->
           <li>
             <form method='post' action='/sessions'>
-            <input type='hidden' name='_method' value='delete' class="form-control">
-            <input type='submit' value='Log Out'>
+              <input type='hidden' name='_method' value='delete'>
+              <input type='submit' value='Log Out'>
             </form>
           </li>
           <!-- <ul> -->
+          <li id="hiUser"> Hi <%= current_user.name %> </li>
+          <% else %> <!-- if you are NOT logged in-->
+          <li><a href="/sessions/new">Sign In</a></li>
+          <li><a href="/users/new">Sign Up</a></li>
+          <% end %>
       </div>
     </div>
   </div>
+
+      <% if flash[:notice] %>
+      <div id='notice'>
+      <%= flash[:notice] %>
+      </div>
+      <% end %>
+
+      <% if flash[:errors] && !flash[:errors].empty? %>
+      Please refer to the following errors below:
+      <ul id='errors' style="list-style: none;">
+      <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+      <% end %>
+      </ul>
+      <% end %>
+
+
   <div id="centerDoc">
   <div>
     <%= yield %>
