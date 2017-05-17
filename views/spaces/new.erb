@@ -16,8 +16,45 @@
     <label for="price">Price Per Night</label>
     <input type="number" name="price" id="price" placeholder="Property price per night">
 
-    <label for="tags">Enter search tags for the property separated by a space</label>
-    <input type="text" name="tags" id="tags" placeholder="spacious airy warm close-to-tube-statoin">
+
+    <fieldset>
+    <legend>Choose your tags</legend>
+      <div>
+        <input type="checkbox" id="Pool" name="tags[]" value="Pool">
+        <label for="Pool">Pool</label>
+      </div>
+      <div>
+        <input type="checkbox" id="Terrace" name="tags[]" value="Terrace">
+        <label for="Terrace">Terrace</label>
+      </div>
+      <div>
+        <input type="checkbox" id="Studio" name="tags[]" value="Studio">
+        <label for="Studio">Studio</label>
+      </div>
+      <div>
+        <input type="checkbox" id="Appartment" name="tags[]" value="Appartment">
+        <label for="Appartment">Appartment</label>
+      </div>
+      <div>
+        <input type="checkbox" id="AC" name="tags[]" value="AC">
+        <label for="AC">AC</label>
+      </div>
+      <div>
+        <input type="checkbox" id="Wifi" name="tags[]" value="Wifi">
+        <label for="Wifi">Wifi</label>
+      </div>
+      <div>
+        <input type="checkbox" id="Balcony" name="tags[]" value="Balcony">
+        <label for="Balcony">Balcony</label>
+      </div>
+      <div>
+        <input type="checkbox" id="Close_to_beach" name="tags[]" value="Close_to_beach">
+        <label for="Close_to_beach">Close to beach</label>
+      </div>
+
+    </fieldset>
+
+    <br>
 
     <label for="description">Describe the property</label>
     <textarea name="description" id="description">Enter property description</textarea>

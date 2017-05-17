@@ -1,0 +1,43 @@
+<div class="row text-center">
+
+
+  <div class="col-xs-12 col-md-12">
+
+    <a href="#" class="thumbnail">
+      <img src="http://placehold.it/600x400" alt="...">
+    </a>
+
+    <div class="col-xs-6 col-md-6 text-left">
+      <p>Owner: <%= @space.user.name %></p>
+      <p><%= @space.name %></p>
+      <p><%= @space.city %></p>
+      <p>£<%= @space.price %> per night</p>
+      <p><%= @space.description %></p>
+      <p>Number of images: <%= @space.images.count %></p>
+    </div>
+
+    <div class="col-xs-6 col-md-6 text-left">
+
+      <form method='post' action='/requests'>
+
+        <label for="name">Name of requester</label>
+        <input type="text" name="name" id="name" placeholder="" value="<%= current_user.name %>">
+
+        <label for="start_date">Request from date:</label>
+        <input type="date" id="start_date" name="start_date">
+
+        <label for="start_date">Request to date:</label>
+        <input type="date" id="end_date" name="end_date">
+
+        <input type="hidden" id="user_id" name="user_id" value="<%= current_user.id %>">
+        <input type="hidden" id="space_id" name="space_id" value="<%= @space.id %>">
+
+        <input type="submit" class="" value="Request This Space">
+
+      </form>
+
+    </div>
+
+  </div>
+
+  </div>

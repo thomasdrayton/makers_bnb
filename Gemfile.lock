@@ -180,7 +180,7 @@ DEPENDENCIES
   sinatra
   sinatra-flash
   sinatra-partial
-  twilio-ruby (~> 4.11, >= 4.11.1)
+  twilio-ruby
 
 BUNDLED WITH
    1.14.6

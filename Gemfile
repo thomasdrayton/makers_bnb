@@ -10,8 +10,8 @@ gem 'rake'
 gem 'sinatra'
 gem 'sinatra-flash'
 gem 'sinatra-partial'
-gem 'twilio-ruby', '~> 4.11', '>= 4.11.1'
 gem 'envyable'
+gem 'twilio-ruby'
 
 group :test do
   gem 'capybara'
