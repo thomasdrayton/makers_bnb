@@ -89,7 +89,7 @@ class Makers_BNB < Sinatra::Base
   end
 
   get '/sessions/logout' do
-    erb :'session/logout'
+    erb :'sessions/logout'
   end
 
 
