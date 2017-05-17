@@ -1,7 +1,4 @@
-
 describe Request do
-
-  before do
     let!(:userowner) do
       User.create(name: 'Bertie', email: 'Test.email@test.com', password: 'Password1234', password_confirmation: 'Password1234')
     end
@@ -17,7 +14,7 @@ describe Request do
     let!(:request) do
       Request.create(startDateReq: 15/05/2017, endDateReq: 15/05/ 2017, confirmed: false, space_id: space.id, user_id: userrenter.id)
     end
-  end
+
 
 
   # it 'knows who owns the property for the request' do
