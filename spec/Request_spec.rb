@@ -8,18 +8,19 @@ describe Request do
     end
 
     let!(:space) do
-      Space.create(name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'E1 6LT', price: 72.06, description: "It's a flat mate", startDate: 15/05/ 2017, endDate: 19/05/2017, user_id: userowner.id)
+      Space.create(name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'E1 6LT', price: 72.06, description: "It's a flat mate", startDate: Date.new(2001,1,2), endDate: Date.new(2001,1,2), user_id: userowner.id)
     end
 
     let!(:request) do
-      Request.create(startDateReq: 15/05/2017, endDateReq: 15/05/ 2017, confirmed: false, space_id: space.id, user_id: userrenter.id)
+      Request.create(startDateReq:Date.new(2001,1,2), endDateReq: Date.new(2001,1,2), confirmed: false, space_id: space.id, user_id: userrenter.id)
     end
 
 
 
-  # it 'knows who owns the property for the request' do
-  #   expect(request.space.user.name).to eq "Bertie"
-  # end
+  it 'knows who owns the property for the request' do
+    p request.space
+    expect(request.space.user.name).to eq "Bertie"
+  end
 
   it 'knows who sent the request' do
     expect(request.user.name).to eq 'Tom'
