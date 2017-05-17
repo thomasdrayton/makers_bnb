@@ -5,7 +5,7 @@ require 'date'
 require 'sinatra/flash'
 require './data_mapper_setup'
 require './helpers/helper'
-
+require 'mail'
 
 class Makers_BNB < Sinatra::Base
   register Sinatra::Flash
@@ -88,9 +88,18 @@ class Makers_BNB < Sinatra::Base
     redirect '/sessions/logout'
   end
 
-
-
   helpers do
+    def send_mail(mail_subject, mail_body)
+      mail = Mail.new do
+        from    'DreamTeam@makersbnb.co.uk'
+        to      'jaiye.s@gmail.com'
+        subject mail_subject
+        body    mail_body
+      end
+      mail.delivery_method :sendmail
+      mail.deliver
+    end
+
     def current_user
       @current_user ||= User.get(session[:user_id])
     end

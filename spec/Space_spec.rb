@@ -17,7 +17,8 @@ describe Space do
 
   it 'Has an ID' do
     expect(space.id).not_to be_nil
-
+  end
+  
   it 'Knows the user it belongs to' do
     expect(space.user.name).to eq "Bertie"
   end
