@@ -17,16 +17,30 @@ a:active { color: rgb(255, 0, 102) }
     
 }
 
+
 #container {
   max-width: 960px;
   width: 96%auto;
   margin:auto;
 }
 
+
 #header {
   background: #fff;
   margin-top: 10px;
 }
+
+
+/*#test_logo {
+  background-image: url("/images/mbnb_blue.png");
+  width: 200px
+}
+
+#test_logo:hover {
+  background-image: url("/images/mbnb_red.png");
+  width: 200px
+}*/
+
 
 #centerDoc {
    /*position: absolute;*/
@@ -71,6 +85,11 @@ width: 200px
 }*/
 
 
+
+#navigation {
+  /*font-family: "futura-pt";*/
+}
+
 #form {
   margin-left: auto;
   margin-right: auto;
@@ -82,6 +101,7 @@ width: 200px
 
 textarea {
     height: 30%;
+input[type=text], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -91,7 +111,10 @@ textarea {
     box-sizing: border-box;
 }
 
+
 input[type=file], select {
+
+input[type=password], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

@@ -1,6 +1,5 @@
+
 ENV['RACK_ENV'] ||= 'development'
-# require './models/User'
-# require './models/Space'
 require 'sinatra/base'
 require 'date'
 require 'sinatra/flash'
@@ -20,6 +19,7 @@ class Makers_BNB < Sinatra::Base
   end
 
   get '/users/new' do
+    #Sign Up form
     erb :'users/new'
   end
 
@@ -30,7 +30,8 @@ class Makers_BNB < Sinatra::Base
   end
 
   get '/sessions/new' do
-    erb :'sessions/new'
+    erb :sign_in
+    # Goes to /users/main on sign in
   end
 
   post '/sessions' do
