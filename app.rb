@@ -30,7 +30,7 @@ class Makers_BNB < Sinatra::Base
   end
 
   get '/sessions/new' do
-    erb :sign_in
+    erb :sessions/new
     # Goes to /users/main on sign in
   end
 
