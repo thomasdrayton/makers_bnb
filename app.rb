@@ -62,7 +62,6 @@ class Makers_BNB < Sinatra::Base
 
   get'/spaces/new' do
     @space = Space.create(name: params[:name], city: params[:city], street: params[:street], postcode: params[:postcode], price: params[:price], description: params[:description], startDate: params[:startDate], endDate: params[:endDate])
-    p @space
     erb :"spaces/new"
   end
 
