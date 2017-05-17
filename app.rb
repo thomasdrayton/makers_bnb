@@ -64,12 +64,19 @@ class Makers_BNB < Sinatra::Base
   end
 
   get'/spaces/new' do
-    @space = Space.create(name: params[:name], city: params[:city], street: params[:street], postcode: params[:postcode], price: params[:price], description: params[:description], startDate: params[:startDate], endDate: params[:endDate])
+    @spaces = Space.all
     erb :'spaces/new'
   end
 
   post'/spaces' do
-
+    start_date = params[:startDate]
+    end_date = params[:endDate]
+    space = Space.create(name: params[:name], city: params[:city], street: params[:street], postcode: params[:postcode], price: params[:price], description: params[:description], startDate: start_date, endDate: end_date)
+    params[:tags].split.each { |tag|
+      space.tags << Tag.first_or_create(name: tag)
+    }
+    space.save
+    redirect '/spaces'
   end
 
   delete '/sessions' do
