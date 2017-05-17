@@ -3,9 +3,11 @@ class Space
   include DataMapper::Resource
 
   belongs_to :user
-  has n, :requests, :required => false
+  has n, :requests
+  has n, :images
+  has n, :tags, :through => Resource
 
-  property :id, Serial, :key => true
+  property :id, Serial
   property :name, String
   property :city, String
   property :street, String
@@ -14,5 +16,5 @@ class Space
   property :description, Text
   property :startDate, Date
   property :endDate, Date
-  property :user_id, Integer
+
 end
