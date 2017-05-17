@@ -76,8 +76,11 @@ class Makers_BNB < Sinatra::Base
     email = current_user.email
     session[:user_id] = nil
     flash.keep[:notice] = "Goodbye #{email}"
-    redirect '/'
-    erb :'index'
+    redirect '/sessions/logout'
+  end
+
+  get '/sessions/logout' do
+    erb :'sessions/logout'
   end
 
   run! if app_file == $0
