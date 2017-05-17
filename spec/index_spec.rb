@@ -9,11 +9,4 @@ feature 'index' do
 
       expect(page).to have_link("Sign Up")
     end
-
-    scenario "Homepage has search link" do
-      visit ('/')
-
-      expect(page).to have_link("Find a bed n breakfast")
-
-    end
 end

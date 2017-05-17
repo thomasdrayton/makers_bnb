@@ -88,6 +88,11 @@ class Makers_BNB < Sinatra::Base
     redirect '/sessions/logout'
   end
 
+
+  get '/sessions/logout' do
+    erb :'sessions/logout'
+  end
+
   helpers do
     def send_mail(mail_subject, mail_body)
       mail = Mail.new do
