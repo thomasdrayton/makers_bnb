@@ -62,12 +62,13 @@ class Makers_BNB < Sinatra::Base
     request = Request.create(startDateReq: start_date, endDateReq: end_date,
     user_id: params[:user_id], space_id: space.id, confirmed: false)
 
-    if request.save
+    if request.possible?(space)
+      request.save
       request.text_owner_of(space, request)
       flash.keep[:notice] = "Your booking was successfully made #{request.user.name}"
       redirect '/spaces'
     else
-      flash.keep[:notice] = "Sorry something went wrong"
+      flash.keep[:notice] = "Try changing your dates...m8"
       redirect '/spaces'
     end
   end
@@ -97,7 +98,7 @@ class Makers_BNB < Sinatra::Base
     # params[:tags].split.each { |tag|
     #   space.tags << Tag.first_or_create(name: tag)
     # }
-    if postcode.valid? == true
+    if postcode.valid?
       space = Space.create(user_id: current_user.id, name: params[:name],
       city: params[:city], street: params[:street],
       postcode: params[:postcode], price: params[:price],

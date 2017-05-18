@@ -154,6 +154,7 @@ GEM
       builder (>= 2.1.2)
       jwt (~> 1.0)
       multi_json (>= 1.3.0)
+    uk_postcode (2.1.1)
     unicode-display_width (1.2.1)
     uuidtools (2.1.5)
     xpath (2.0.0)
@@ -182,6 +183,7 @@ DEPENDENCIES
   sinatra-flash
   sinatra-partial
   twilio-ruby
+  uk_postcode
 
 BUNDLED WITH
    1.14.6
