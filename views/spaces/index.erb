@@ -1,19 +1,27 @@
-<p>This is speces Index</p>
-<p>There are: <%= @spaces.count %> spaces available<p>
+
+<div class="container">
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+  <p>There are: <%= @spaces.count %> spaces available</p>
+  </div>
+</div>
+
+<div class="row">
+
+<% @spaces.each do |space| %>
+  <div class="col-sm-4 col-md-4">
+    <p>This property belongs to <%= space.user.name %></p>
+    <p><%= space.name %></p>
+    <img src="<= space.image.first =>" alt ="">
+    <p><%= space.city %></p>
+    <p>Price per night: £ <%= space.price %></p>
+    <p>Number of images: <%= space.images.count %></p>
+    <p>Available From: <%= space.startDate %></p>
+    <p>Available To: <%= space.endDate %></p>
+    <p><a href="/requests/new/<%= space.id %>">Book This Space</a></p>
+  </div>
+<% end %>
 
 
-  <% @spaces.each do |space| %>
-
-
-<p>This property belongs to <%= space.user.name %></p>
-<p><%= space.name %></p>
-<p><%= space.city %></p>
-<p><%= space.price %></p>
-<p>Available From<%= space.startDate %></p>
-<p>Available To<%= space.endDate %></p>
-
-
-  <img src="<= space.image =>" alt ="">
-
-
-  <% end %>
+</div>
+</div>

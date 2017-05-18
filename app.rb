@@ -6,7 +6,7 @@ require 'sinatra/flash'
 require './data_mapper_setup'
 require './helpers/helper'
 require "uk_postcode"
-
+require 'mail'
 
 class Makers_BNB < Sinatra::Base
   register Sinatra::Flash
@@ -51,7 +51,24 @@ class Makers_BNB < Sinatra::Base
   get '/spaces'do
     @spaces = Space.all
     erb :'spaces/index'
-    # From the Rent Space link on users/main
+  end
+
+  post '/requests' do
+
+    space = Space.get(params[:space_id])
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
+    request = Request.create(startDateReq: start_date, endDateReq: end_date,
+    user_id: params[:user_id], space_id: space.id, confirmed: false)
+
+    if request.save
+      request.text_owner_of(space, request)
+      flash.keep[:notice] = "Your booking was successfully made #{request.user.name}"
+      redirect '/spaces'
+    else
+      flash.keep[:notice] = "Sorry something went wrong"
+      redirect '/spaces'
+    end
   end
 
   get '/space/rent' do
@@ -65,6 +82,11 @@ class Makers_BNB < Sinatra::Base
 
   get'/spaces/new' do
     erb :'spaces/new'
+  end
+
+  get '/requests/new/:id' do
+    @space = Space.get(params[:id])
+    erb :'requests/new'
   end
 
   post'/spaces' do
@@ -87,6 +109,7 @@ class Makers_BNB < Sinatra::Base
       flash.keep[:notice] = "Please enter a valid UK Postcode"
       redirect '/spaces/new'
     end
+
   end
 
   delete '/sessions' do
@@ -96,12 +119,23 @@ class Makers_BNB < Sinatra::Base
     redirect '/sessions/logout'
   end
 
+
   get '/sessions/logout' do
     erb :'sessions/logout'
   end
 
-
   helpers do
+    def send_mail(mail_subject, mail_body)
+      mail = Mail.new do
+        from    'DreamTeam@makersbnb.co.uk'
+        to      'jaiye.s@gmail.com'
+        subject mail_subject
+        body    mail_body
+      end
+      mail.delivery_method :sendmail
+      mail.deliver
+    end
+
     def current_user
       @current_user ||= User.get(session[:user_id])
     end

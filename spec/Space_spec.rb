@@ -38,4 +38,10 @@ describe Space do
     postcode = UKPostcode.parse(bad_space.postcode)
     expect(postcode.valid?).to be_falsy
   end
+
+  it 'Can be read through user' do
+    expect(user.spaces.length).to eq 1
+  end
+
+
 end

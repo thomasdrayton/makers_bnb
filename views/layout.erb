@@ -20,6 +20,8 @@
         <!-- <ul> -->
           <li><a href="/">Home</a></li>
           <% if current_user %> <!-- if you are logged in-->
+          <li><a href="/spaces">View available Spaces</a></li>
+          <li><a href="/users/main">View my available Spaces</a></li>
           <li><a href="/spaces/new">Upload a new space</a></li>
           <li>
             <form method='post' action='/sessions'>
