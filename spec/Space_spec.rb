@@ -6,11 +6,11 @@ describe Space do
   end
 
   let!(:space) do
-    Space.create(name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'E1 6LT', price: 72.06, description: "It's a flat mate", startDate:Date.new(2001,1,2), endDate: Date.new(2001,1,2), user_id: user.id)
+    Space.create(name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'E1 6LT', price: 72.06, description: "It's a flat mate", startDate:Date.new(2001,1,2), endDate: Date.new(2002,1,2), user_id: user.id)
   end
 
   let!(:bad_space) do
-    Space.create(name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'AGHHHHHHHHHH', price: 72.06, description: "It's a flat mate", startDate:Date.new(2001,1,2), endDate: Date.new(2001,1,2), user_id: user.id)
+    Space.create(name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'AGHHHHHHHHHH', price: 72.06, description: "It's a flat mate", startDate:Date.new(2001,1,2), endDate: Date.new(1970,1,2), user_id: user.id)
   end
 
   it 'Knows its city' do
@@ -40,9 +40,10 @@ describe Space do
   end
 
   it 'Can be read through user' do
-    p user.spaces.length
     expect(user.spaces.length).to eq 2
   end
 
-
+  it 'Knows if one date is before another' do
+    expect(Space.validate_date((space.startDate), (space.endDate))).to be_truthy
+  end
 end
