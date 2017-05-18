@@ -1,5 +1,5 @@
 require 'web_helpers'
-require "uk_postcode"
+
 
 feature "User can create a new space" do
   scenario "A user can list a space" do
