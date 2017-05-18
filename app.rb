@@ -14,6 +14,7 @@ class Makers_BNB < Sinatra::Base
   use Rack::MethodOverride
 
   get '/' do
+    @spaces = Space.all
     erb :index
   end
 
