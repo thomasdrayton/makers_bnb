@@ -15,13 +15,12 @@ describe Request do
       Request.create(startDateReq:Date.new(2001,1,2), endDateReq: Date.new(2001,1,2), confirmed: false, space_id: space.id, user_id: userrenter.id)
     end
 
+    it 'knows who owns the property for the request' do
+      expect(request.space.user.name).to eq "Bertie"
+    end
 
+    it 'knows who sent the request' do
+      expect(request.user.name).to eq 'Tom'
+    end
 
-  it 'knows who owns the property for the request' do
-    expect(request.space.user.name).to eq "Bertie"
-  end
-
-  it 'knows who sent the request' do
-    expect(request.user.name).to eq 'Tom'
-  end
 end
