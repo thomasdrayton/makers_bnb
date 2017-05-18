@@ -25,8 +25,13 @@ class Makers_BNB < Sinatra::Base
 
   post '/users' do
     @user = User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
-    session[:user_id] = @user.id
-    redirect 'users/main'
+    if @user.save
+      session[:user_id] = @user.id
+      redirect 'users/main'
+    else
+      flash.now[:errors] = ['Unable to sign you up.']
+      redirect 'users/new'
+    end
   end
 
   get '/sessions/new' do
@@ -68,7 +73,8 @@ class Makers_BNB < Sinatra::Base
       flash.keep[:notice] = "Your booking was successfully made #{request.user.name}"
       redirect '/spaces'
     else
-      flash.keep[:notice] = "Try changing your dates...m8"
+
+      flash.keep[:notice] = "The space that you are requesting is unavailable for those dates #{current_user.name}"
       redirect '/spaces'
     end
   end
@@ -99,6 +105,7 @@ class Makers_BNB < Sinatra::Base
     # params[:tags].split.each { |tag|
     #   space.tags << Tag.first_or_create(name: tag)
     # }
+
     if postcode && date
       space = Space.create(user_id: current_user.id, name: params[:name],
       city: params[:city], street: params[:street],
@@ -106,6 +113,7 @@ class Makers_BNB < Sinatra::Base
       description: params[:description], startDate: params[:start_date],
       endDate: params[:end_date])
       space.save
+      flash.keep[:notice] = "Space successfully created"
       redirect '/spaces'
     elsif date
       flash.keep[:notice] = "Please enter a valid UK Postcode"

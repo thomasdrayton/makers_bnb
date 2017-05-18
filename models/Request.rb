@@ -13,6 +13,7 @@ class Request
 
   def possible?(space)
 
+
     d1 = DateTime.parse(self.startDateReq.to_s).to_date
     d2 = DateTime.parse(self.endDateReq.to_s).to_date
     d3 = DateTime.parse(space.startDate.to_s).to_date
@@ -22,7 +23,7 @@ class Request
 
   end
   
-  def text_owner_of(space, request)
+    def text_owner_of(space, request)
 
     phone_number = '+447788238989'
 
