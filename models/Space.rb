@@ -5,7 +5,7 @@ class Space
   belongs_to :user
   has n, :requests
   has n, :images
-  has n, :tags, :through => Resource
+  has 1, :tag
 
   property :id, Serial
   property :name, String
@@ -16,5 +16,5 @@ class Space
   property :description, Text
   property :startDate, Date
   property :endDate, Date
-
+  
 end

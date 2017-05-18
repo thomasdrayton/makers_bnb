@@ -1,8 +1,8 @@
 require 'date'
-describe Request do
+describe Tag do
 
     let!(:tag) do
-      Tag.create(name: 'Pool')
+      Tag.create(pool: true, terrace: true, studio: false, wifi: false, AC: false, appartment: false, close_to_beach: false, balcony: false)
     end
 
     let!(:userowner) do
@@ -14,7 +14,7 @@ describe Request do
     end
 
     let!(:space) do
-      Space.create(name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'E1 6LT', price: 72.06, description: "It's a flat mate", startDate: Date.new(2001,1,2), endDate: Date.new(2001,3,4), user_id: userowner.id)
+      Space.create(name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'E1 6LT', price: 72.06, description: "It's a flat mate", startDate: Date.new(2001,1,2), endDate: Date.new(2001,3,4), user_id: userowner.id, tag: tag)
     end
 
     let!(:request) do
@@ -22,14 +22,12 @@ describe Request do
     end
 
   it 'tag knows its relationship with space' do
-    space.tags << tag
-    expect(space.tags.length).to eq 1
+    p space.tag
+    expect(space.tag.terrace).to eq true
+    expect(space.tag.pool).to eq true
+    expect(space.tag.studio).to eq false
   end
 
-  it 'tag knows its relationship with space' do
-    tag.spaces << space
-    expect(tag.spaces.length).to eq 1
-  end
 
   it 'has an ID' do
     expect(tag.id).not_to be_nil

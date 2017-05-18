@@ -40,6 +40,7 @@ describe Space do
   end
 
   it 'Can be read through user' do
+    p user.spaces
     expect(user.spaces.length).to eq 1
   end
 

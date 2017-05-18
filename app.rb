@@ -15,7 +15,7 @@ class Makers_BNB < Sinatra::Base
   use Rack::MethodOverride
 
   get '/' do
-    @spaces = Space.all
+    @spaces = Space.all #this is where we would filter for tags
     erb :index
   end
 
@@ -50,8 +50,55 @@ class Makers_BNB < Sinatra::Base
   end
 
   get '/spaces'do
+
     @spaces = Space.all
+
+    #tag_filter = Tag.create(pool: params[:Pool], terrace: params[:Terrace], studio: params[:Studio], wifi: params[:Wifi],
+    #AC: params[:AC], appartment: params[:Appartment], close_to_beach: params[:Close_to_beach], balcony: params[:Balcony])
+
+    #@spaces = Space.all(if params[:pool == true, find all spaces with a pool and ignore all without]) #such that space.tags
     erb :'spaces/index'
+
+  end
+
+  post '/filtered' do
+
+    @spaces = Space.all
+
+    if params[:Pool] == true
+    @spaces = Space.all(tag.pool => true)
+    end
+
+    if params[:Terrace] == true
+    @spaces = Space.all(tag.terrace => true)
+    end
+
+    if params[:Studio] == true
+    @spaces = Space.all(tag.studio => true)
+    end
+
+    if params[:Wifi] == true
+    @spaces = Space.all(tag.wifi => true)
+    end
+
+    if params[:AC] == true
+    @spaces = Space.all(tag.ac => true) #AC
+    end
+
+    if params[:Appartment] == true
+    @spaces = Space.all(tag.appartment => true)
+    end
+
+    if params[:Close_to_beach] == true
+    @spaces = Space.all(tag.close_to_beach => true)
+    end
+
+    if params[:Balcony] == true
+    @spaces = Space.all(tag.balcony => true)
+    end
+    p @spaces
+    erb :'spaces/index'
+
   end
 
   post '/requests' do
@@ -99,12 +146,19 @@ class Makers_BNB < Sinatra::Base
     #   space.tags << Tag.first_or_create(name: tag)
     # }
     if postcode.valid?
+      p params[:Pool]
+      p params[:Terrace]
+      tag_ = Tag.create(pool: params[:Pool], terrace: params[:Terrace], studio: params[:Studio], wifi: params[:Wifi],
+      AC: params[:AC], appartment: params[:Appartment], close_to_beach: params[:Close_to_beach], balcony: params[:Balcony])
+
       space = Space.create(user_id: current_user.id, name: params[:name],
       city: params[:city], street: params[:street],
       postcode: params[:postcode], price: params[:price],
       description: params[:description], startDate: params[:start_date],
-      endDate: params[:end_date])
+      endDate: params[:end_date], tag: tag_)
+
       space.save
+      tag_.save
       redirect '/spaces'
     else
       p postcode
