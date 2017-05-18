@@ -1,5 +1,3 @@
-require_relative '../web_helpers'
-
 feature 'Request creation' do
 
   scenario 'successfully' do

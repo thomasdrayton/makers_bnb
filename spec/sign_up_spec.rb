@@ -1,5 +1,3 @@
-require 'web_helpers'
-
 feature 'User can sign up to Makers_BNB' do
   scenario 'A user signs up to Makers_BNB' do
     visit '/'
