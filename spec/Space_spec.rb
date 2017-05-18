@@ -23,4 +23,8 @@ describe Space do
     expect(space.user.name).to eq "Bertie"
   end
 
+  it 'Can be read through user' do
+    expect(user.spaces.length).to eq 1
+  end
+
 end

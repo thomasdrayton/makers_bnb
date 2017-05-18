@@ -1,49 +1,32 @@
-<p class="primary">These are your listed properties</p>
+<div class="container">
+
+<div class="row">
+<p class="primary">You have <%= current_user.spaces.length %> spaces listed </p>
 <span class=glyphicon glyphicon-object-align-right></span>
-
+</div>
 
 <div class="row">
-  <div class="col-xs-4 col-md-4">
-    <a href="#" class="thumbnail">
-      <img src="http://placehold.it/300x200" alt="...">
-    </a>
-    <div style="margin-left:40px;">
-      <p>London</p>
-      <p>Space Name</p>
-      <p>Price</p>
-      <p>Description</p>
-      <a href="#">Click to see bookings (0)</a>
-    </div>
-  </div>
 
+  <% if current_user.spaces.length > 0 %>
 
+  <% current_user.spaces.each do |space| %>
 
   <div class="col-xs-4 col-md-4">
     <a href="#" class="thumbnail">
-      <img src="http://placehold.it/300x200" alt="...">
+      <img src="http://placehold.it/200x200" alt="...">
     </a>
     <div style="margin-left:40px;">
-      <p>London</p>
-      <p>Space Name</p>
-      <p>Price</p>
-      <p>Description</p>
-      <a href="#">Click to see bookings (0)</a>
+      <p> <%= space.city %> </p>
+      <p> <%= space.name %> </p>
+      <p> <%= space.price %> </p>
+      <p> <%= space.description %> </p>
+      <p>Number of bookings (<%= space.requests.count %>)</p>
     </div>
   </div>
 
+  <% end %>
 
-  <div class="col-xs-4 col-md-4">
-    <a href="#" class="thumbnail">
-      <img src="http://placehold.it/300x200" alt="...">
-    </a>
-    <div style="margin-left:40px;">
-      <p>London</p>
-      <p>Space Name</p>
-      <p>Price</p>
-      <p>Description</p>
-      <a href="#">Click to see bookings (0)</a>
-    </div>
-  </div>
+  <% end %>
 
 </div>
 
@@ -53,3 +36,6 @@
 
   </div>
 </div>
+
+
+</div> <!-- close container -->

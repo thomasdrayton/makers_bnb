@@ -23,7 +23,6 @@
         null,
         1,
         1,
-        1,
         null,
         null,
         1,
@@ -34,11 +33,15 @@
       "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb_bnb/spec/Space_spec.rb": [
         1,
         1,
-        4,
+        5,
         null,
         null,
         1,
-        4,
+        5,
+        null,
+        null,
+        1,
+        1,
         null,
         null,
         1,
@@ -199,6 +202,6 @@
         null
       ]
     },
-    "timestamp": 1495059946
+    "timestamp": 1495088124
   }
 }
