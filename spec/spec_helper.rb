@@ -8,7 +8,7 @@ require 'rspec'
 require 'simplecov'
 require 'simplecov-console'
 require './app'
-
+require 'web_helpers'
 require './models/User'
 require './models/Space'
 require './models/Request'

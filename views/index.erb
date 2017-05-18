@@ -9,19 +9,6 @@
 
 <div class="row">
 
-<!-- # <% @spaces.each do |space| %>
-#   <div class="col-sm-4 col-md-4">
-#     <p>This property belongs to <%= space.user.name %></p>
-#     <p><%= space.name %></p>
-#     <img src="<= space.image.first =>" alt ="">
-#     <p><%= space.city %></p>
-#     <p>Price per night: £ <%= space.price %></p>
-#     <p>Number of images: <%= space.images.count %></p>
-#     <p>Available From: <%= space.startDate %></p>
-#     <p>Available To: <%= space.endDate %></p>
-#     <p><a href="/session/new">Log in to make a booking</a></p>
-#   </div>
-# <% end %> -->
 
 
 </div>
@@ -73,7 +60,7 @@
         <h3><%= space.name %></h3>
         <p><%= space.city %></p>
         <p><a href="/session/new">Log in to book this property</a></p>
+        <% end %>
       </div>
-      <% end %>
     </div>
   </div>
