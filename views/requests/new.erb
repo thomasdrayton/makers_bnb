@@ -8,11 +8,13 @@
     </a>
 
     <div class="col-xs-6 col-md-6 text-left">
-      <p>Owner: <%= @space.user.name %></p>
-      <p><%= @space.name %></p>
-      <p><%= @space.city %></p>
-      <p>£<%= @space.price %> per night</p>
+      <p>Owner: <%= @space.user.name %></p><!-- Insert today -->
+      <p>House name: <%= @space.name %></p><!-- Insert today -->
+      <p>City: <%= @space.city %></p><!-- Insert today -->
+      <p><%= @space.price %> per night</p>
       <p><%= @space.description %></p>
+      <p><%= @space.startDate %></p><!-- Insert today -->
+      <p>Available to: <%= @space.endDate %></p><!-- Insert today -->
       <p>Number of images: <%= @space.images.count %></p>
     </div>
 

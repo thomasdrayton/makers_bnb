@@ -5,6 +5,7 @@ require 'date'
 require 'sinatra/flash'
 require './data_mapper_setup'
 require './helpers/helper'
+require "uk_postcode"
 require 'mail'
 
 class Makers_BNB < Sinatra::Base
@@ -14,6 +15,7 @@ class Makers_BNB < Sinatra::Base
   use Rack::MethodOverride
 
   get '/' do
+    @spaces = Space.all
     erb :index
   end
 
@@ -23,8 +25,13 @@ class Makers_BNB < Sinatra::Base
 
   post '/users' do
     @user = User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
-    session[:user_id] = @user.id
-    redirect 'users/main'
+    if @user.save
+      session[:user_id] = @user.id
+      redirect 'users/main'
+    else
+      flash.now[:errors] = ['Unable to sign you up.']
+      redirect 'users/new'
+    end
   end
 
   get '/sessions/new' do
@@ -60,12 +67,14 @@ class Makers_BNB < Sinatra::Base
     request = Request.create(startDateReq: start_date, endDateReq: end_date,
     user_id: params[:user_id], space_id: space.id, confirmed: false)
 
-    if request.save
+    if request.possible?(space)
+      request.save
       request.text_owner_of(space, request)
       flash.keep[:notice] = "Your booking was successfully made #{request.user.name}"
       redirect '/spaces'
     else
-      flash.keep[:notice] = "Sorry something went wrong"
+
+      flash.keep[:notice] = "The space that you are requesting is unavailable for those dates #{current_user.name}"
       redirect '/spaces'
     end
   end
@@ -91,16 +100,31 @@ class Makers_BNB < Sinatra::Base
   post'/spaces' do
     start_date = Date.parse(params[:start_date])
     end_date = Date.parse(params[:end_date])
-    space = Space.create(user_id: current_user.id, name: params[:name],
-    city: params[:city], street: params[:street],
-    postcode: params[:postcode], price: params[:price],
-    description: params[:description], startDate: params[:start_date],
-    endDate: params[:end_date])
+    postcode = Space.validate_postcode((params[:postcode]))
+    date = Space.validate_date(start_date, end_date)
     # params[:tags].split.each { |tag|
     #   space.tags << Tag.first_or_create(name: tag)
     # }
-    space.save
-    redirect '/spaces'
+
+    if postcode && date
+      space = Space.create(user_id: current_user.id, name: params[:name],
+      city: params[:city], street: params[:street],
+      postcode: params[:postcode], price: params[:price],
+      description: params[:description], startDate: params[:start_date],
+      endDate: params[:end_date])
+      space.save
+      flash.keep[:notice] = "Space successfully created"
+      redirect '/spaces'
+    elsif date
+      flash.keep[:notice] = "Please enter a valid UK Postcode"
+      redirect '/spaces/new'
+    elsif postcode
+      flash.keep[:notice] = "Please Make sure your end date is after your start date"
+      redirect '/spaces/new'
+    else
+      flash.keep[:notice] = "Please Enter a Valid UK Postcode. Please Make sure your end date is after your start date"
+      redirect '/spaces/new'
+    end
   end
 
   delete '/sessions' do

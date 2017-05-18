@@ -11,8 +11,19 @@ class Request
   property :endDateReq, Date
   property :confirmed, Boolean
 
+  def possible?(space)
 
-  def text_owner_of(space, request)
+
+    d1 = DateTime.parse(self.startDateReq.to_s).to_date
+    d2 = DateTime.parse(self.endDateReq.to_s).to_date
+    d3 = DateTime.parse(space.startDate.to_s).to_date
+    d4 = DateTime.parse(space.endDate.to_s).to_date
+
+    d1.between?(d3,d4) && d2.between?(d3,d4)
+
+  end
+  
+    def text_owner_of(space, request)
 
     phone_number = '+447788238989'
 

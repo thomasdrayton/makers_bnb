@@ -8,12 +8,15 @@ gem 'mail'
 gem 'pg'
 gem 'pry'
 gem 'rake'
+gem 'mail'
 gem 'sinatra'
 gem 'mail'
 gem 'sinatra-flash'
 gem 'sinatra-partial'
 gem 'envyable'
+gem "uk_postcode"
 gem 'twilio-ruby'
+
 
 group :test do
   gem 'capybara'

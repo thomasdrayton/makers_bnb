@@ -1,3 +1,5 @@
+require "uk_postcode"
+require 'date'
 class Space
 
   include DataMapper::Resource
@@ -16,5 +18,15 @@ class Space
   property :description, Text
   property :startDate, Date
   property :endDate, Date
+
+  def self.validate_postcode(postcode)
+    pc = UKPostcode.parse(postcode)
+    postcode if pc.valid?
+  end
+
+  def self.validate_date(date1, date2)
+    date = false
+    date = true if date1 < date2
+  end
 
 end
