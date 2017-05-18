@@ -20,3 +20,16 @@ def create_space
   fill_in :end_date, with: Date.new(2002,1,2)
   click_button 'Upload this space'
 end
+
+def create_bad_space
+  click_link 'Upload a new space'
+  fill_in :name, with: 'Flat'
+  fill_in :city, with: 'London'
+  fill_in :street, with: 'Comercial Street'
+  fill_in :postcode, with: 'AHHHHHHHHHHHHHHHHHH'
+  fill_in :price, with: 72.07
+  fill_in :description, with: "It's a flat mate"
+  fill_in :start_date, with: Date.new(2001,1,2)
+  fill_in :end_date, with: Date.new(2002,1,2)
+  click_button 'Upload this space'
+end
