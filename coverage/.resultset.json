@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb_bnb/spec/Request_spec.rb": [
+      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb/spec/Request_spec.rb": [
         1,
         1,
         2,
@@ -19,18 +19,17 @@
         2,
         null,
         null,
-        null,
-        null,
         1,
         1,
         null,
         null,
         1,
         1,
+        null,
         null,
         null
       ],
-      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb_bnb/spec/Space_spec.rb": [
+      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb/spec/Space_spec.rb": [
         1,
         1,
         5,
@@ -62,7 +61,7 @@
         null,
         null
       ],
-      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb_bnb/spec/Tags_spec.rb": [
+      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb/spec/Tags_spec.rb": [
         1,
         1,
         null,
@@ -102,7 +101,7 @@
         null,
         null
       ],
-      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb_bnb/spec/User_spec.rb": [
+      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb/spec/User_spec.rb": [
         1,
         1,
         3,
@@ -121,7 +120,7 @@
         null,
         null
       ],
-      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb_bnb/spec/feature_spec.rb": [
+      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb/spec/feature_spec.rb": [
         1,
         null,
         1,
@@ -143,7 +142,7 @@
         null,
         null
       ],
-      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb_bnb/spec/image_spec.rb": [
+      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb/spec/image_spec.rb": [
         1,
         1,
         1,
@@ -162,7 +161,7 @@
         null,
         null
       ],
-      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb_bnb/spec/index_spec.rb": [
+      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb/spec/index_spec.rb": [
         1,
         1,
         1,
@@ -176,7 +175,7 @@
         null,
         null
       ],
-      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb_bnb/spec/sign_up_spec.rb": [
+      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb/spec/sign_up_spec.rb": [
         1,
         null,
         1,
@@ -190,7 +189,7 @@
         null,
         null
       ],
-      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb_bnb/spec/web_helpers.rb": [
+      "/Users/Jaiye/Documents/Sites/Ruby/precourse/Projects/makers_bnb/spec/web_helpers.rb": [
         1,
         1,
         1,
@@ -202,6 +201,6 @@
         null
       ]
     },
-    "timestamp": 1495088124
+    "timestamp": 1495096662
   }
 }
