@@ -73,6 +73,7 @@ class Makers_BNB < Sinatra::Base
       flash.keep[:notice] = "Your booking was successfully made #{request.user.name}"
       redirect '/spaces'
     else
+
       flash.keep[:notice] = "The space that you are requesting is unavailable for those dates #{current_user.name}"
       redirect '/spaces'
     end
@@ -99,11 +100,13 @@ class Makers_BNB < Sinatra::Base
   post'/spaces' do
     start_date = Date.parse(params[:start_date])
     end_date = Date.parse(params[:end_date])
-    postcode = UKPostcode.parse(params[:postcode])
+    postcode = Space.validate_postcode((params[:postcode]))
+    date = Space.validate_date(start_date, end_date)
     # params[:tags].split.each { |tag|
     #   space.tags << Tag.first_or_create(name: tag)
     # }
-    if postcode.valid?
+
+    if postcode && date
       space = Space.create(user_id: current_user.id, name: params[:name],
       city: params[:city], street: params[:street],
       postcode: params[:postcode], price: params[:price],
@@ -112,11 +115,16 @@ class Makers_BNB < Sinatra::Base
       space.save
       flash.keep[:notice] = "Space successfully created"
       redirect '/spaces'
-    else
+    elsif date
       flash.keep[:notice] = "Please enter a valid UK Postcode"
       redirect '/spaces/new'
+    elsif postcode
+      flash.keep[:notice] = "Please Make sure your end date is after your start date"
+      redirect '/spaces/new'
+    else
+      flash.keep[:notice] = "Please Enter a Valid UK Postcode. Please Make sure your end date is after your start date"
+      redirect '/spaces/new'
     end
-
   end
 
   delete '/sessions' do

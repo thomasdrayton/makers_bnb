@@ -94,8 +94,20 @@ def create_unsuccessful_request(user)
   expect(page).to have_content("The space that you are requesting is unavailable for those dates #{user[:name]}")
 end
 
-def create_successful_space
+def create_bad_date_space
   click_link 'Upload a new space'
+  fill_in :name, with: 'Flat'
+  fill_in :city, with: 'London'
+  fill_in :street, with: 'Comercial Street'
+  fill_in :postcode, with: 'AHHHHHHHHHHHHHHHHHH'
+  fill_in :price, with: 72.07
+  fill_in :description, with: "It's a flat mate"
+  fill_in :start_date, with: Date.new(2001,1,2)
+  fill_in :end_date, with: Date.new(1970,1,2)
+  click_button 'Upload this space'
+  
+def create_successful_space
+ click_link 'Upload a new space'
   fill_in :name, with: 'Flat'
   fill_in :city, with: 'London'
   fill_in :street, with: 'Comercial Street'
@@ -107,4 +119,5 @@ def create_successful_space
   click_button 'Upload this space'
   expect(page).to have_content "Space successfully created"
   expect(current_url).to eq 'http://www.example.com/spaces'
+
 end
