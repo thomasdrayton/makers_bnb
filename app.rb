@@ -112,7 +112,21 @@ class Makers_BNB < Sinatra::Base
       postcode: params[:postcode], price: params[:price],
       description: params[:description], startDate: params[:start_date],
       endDate: params[:end_date])
+
       space.save
+
+        if params[:file]
+          filename = params[:file][:filename]
+          file = params[:file][:tempfile]
+          File.open("./public/images/#{filename}", 'wb') do |f|
+          f.write(file.read)
+          image = Image.create(image_url: filename, space_id: space.id)
+          space.images << image
+          end
+        else
+          p 'no params file'
+        end
+
       flash.keep[:notice] = "Space successfully created"
       redirect '/spaces'
     elsif date
