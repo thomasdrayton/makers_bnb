@@ -4,7 +4,11 @@
   <div class="col-xs-12 col-md-12">
 
     <a href="#" class="thumbnail">
-      <img src="http://placehold.it/600x400" alt="...">
+      <% unless @space.images.count == 0 %>
+        <div class="spaceImages">
+        <img src="/images/<%= @space.images.first.image_url %>" alt ="">
+        </div>
+      <% end %>
     </a>
 
     <div class="col-xs-6 col-md-6 text-left">

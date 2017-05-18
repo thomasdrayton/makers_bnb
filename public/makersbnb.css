@@ -12,6 +12,11 @@ a:visited { color: #1a8cff }
 a:hover { color: #80bfff }
 a:active { color: rgb(255, 0, 102) }
 
+.spaceImages img {
+  height: 200px;
+  width: 200px;
+}
+
 #tagMenu li {
   display: inline;
   padding: 0px;
