@@ -96,9 +96,9 @@ class Makers_BNB < Sinatra::Base
     postcode: params[:postcode], price: params[:price],
     description: params[:description], startDate: params[:start_date],
     endDate: params[:end_date])
-    # params[:tags].split.each { |tag|
-    #   space.tags << Tag.first_or_create(name: tag)
-    # }
+    params[:tags].each { |tag|
+      space.tags << Tag.first_or_create(name: tag)
+    }
     space.save
     redirect '/spaces'
   end
