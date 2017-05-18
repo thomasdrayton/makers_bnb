@@ -25,7 +25,7 @@ class Request
   
     def text_owner_of(space, request)
 
-    phone_number = '+447788238989'
+    phone_number = ''
 
     account_sid = "AC81484a848edc0fb0b146b2a41ed43093"
     auth_token = "51bd7ca12a212a5658242c268223756d"
