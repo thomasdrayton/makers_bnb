@@ -18,7 +18,6 @@ describe Request do
 
 
   it 'knows who owns the property for the request' do
-    p request.space
     expect(request.space.user.name).to eq "Bertie"
   end
 

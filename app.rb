@@ -5,6 +5,7 @@ require 'date'
 require 'sinatra/flash'
 require './data_mapper_setup'
 require './helpers/helper'
+require "uk_postcode"
 
 
 class Makers_BNB < Sinatra::Base
@@ -69,6 +70,7 @@ class Makers_BNB < Sinatra::Base
   post'/spaces' do
     start_date = Date.parse(params[:start_date])
     end_date = Date.parse(params[:end_date])
+    postcode = UKPostcode.parse(params[:postcode])
     space = Space.create(user_id: current_user.id, name: params[:name],
     city: params[:city], street: params[:street],
     postcode: params[:postcode], price: params[:price],
