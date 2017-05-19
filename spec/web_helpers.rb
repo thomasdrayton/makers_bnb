@@ -16,8 +16,8 @@ def create_space
   fill_in :postcode, with: 'E1 6LT'
   fill_in :price, with: 72.07
   fill_in :description, with: "It's a flat mate"
-  fill_in :start_date, with: Date.new(2001,1,2)
-  fill_in :end_date, with: Date.new(2002,1,2)
+  fill_in :start_date, with: Date.new(2001, 1, 2)
+  fill_in :end_date, with: Date.new(2002, 1, 2)
   click_button 'Upload this space'
 end
 
@@ -29,8 +29,8 @@ def create_bad_space
   fill_in :postcode, with: 'AHHHHHHHHHHHHHHHHHH'
   fill_in :price, with: 72.07
   fill_in :description, with: "It's a flat mate"
-  fill_in :start_date, with: Date.new(2001,1,2)
-  fill_in :end_date, with: Date.new(2002,1,2)
+  fill_in :start_date, with: Date.new(2001, 1, 2)
+  fill_in :end_date, with: Date.new(2002, 1, 2)
   click_button 'Upload this space'
 end
 
@@ -67,13 +67,13 @@ def create_successful_request(user)
   click_link('View available Spaces')
   expect(current_url).to eq 'http://www.example.com/spaces'
   expect(page).to have_content 72.07
-  expect(page).to have_content "This property belongs to Peter"
+  expect(page).to have_content 'This property belongs to Peter'
   click_link 'Book This Space'
   # expect(current_url).to eq 'http://www.example.com/requests/new'
   expect(page).to have_content 72.07
-  fill_in :start_date, with: "2017/01/01"
-  fill_in :end_date, with: "2017/02/01"
-  click_button "Request This Space"
+  fill_in :start_date, with: '2017/01/01'
+  fill_in :end_date, with: '2017/02/01'
+  click_button 'Request This Space'
   expect(current_url).to eq 'http://www.example.com/spaces'
   expect(page).to have_content("Your booking was successfully made #{user[:name]}")
 end
@@ -83,13 +83,13 @@ def create_unsuccessful_request(user)
   click_link('View available Spaces')
   expect(current_url).to eq 'http://www.example.com/spaces'
   expect(page).to have_content 72.07
-  expect(page).to have_content "This property belongs to Peter"
+  expect(page).to have_content 'This property belongs to Peter'
   click_link 'Book This Space'
   # expect(current_url).to eq 'http://www.example.com/requests/new'
   expect(page).to have_content 72.07
-  fill_in :start_date, with: "2016/01/01"
-  fill_in :end_date, with: "2016/02/01"
-  click_button "Request This Space"
+  fill_in :start_date, with: '2016/01/01'
+  fill_in :end_date, with: '2016/02/01'
+  click_button 'Request This Space'
   expect(current_url).to eq 'http://www.example.com/spaces'
   expect(page).to have_content("The space that you are requesting is unavailable for those dates #{user[:name]}")
 end
@@ -102,22 +102,22 @@ def create_bad_date_space
   fill_in :postcode, with: 'AHHHHHHHHHHHHHHHHHH'
   fill_in :price, with: 72.07
   fill_in :description, with: "It's a flat mate"
-  fill_in :start_date, with: Date.new(2001,1,2)
-  fill_in :end_date, with: Date.new(1970,1,2)
+  fill_in :start_date, with: Date.new(2001, 1, 2)
+  fill_in :end_date, with: Date.new(1970, 1, 2)
   click_button 'Upload this space'
 end
 
 def create_successful_space
- click_link 'Upload a new space'
+  click_link 'Upload a new space'
   fill_in :name, with: 'Flat'
   fill_in :city, with: 'London'
   fill_in :street, with: 'Comercial Street'
   fill_in :postcode, with: 'E1 6LT'
   fill_in :price, with: 72.07
   fill_in :description, with: "It's a flat mate"
-  fill_in :start_date, with: "2016/11/11"
-  fill_in :end_date, with: "2017/04/03"
+  fill_in :start_date, with: '2016/11/11'
+  fill_in :end_date, with: '2017/04/03'
   click_button 'Upload this space'
-  expect(page).to have_content "Space successfully created"
+  expect(page).to have_content 'Space successfully created'
   expect(current_url).to eq 'http://www.example.com/spaces'
 end
