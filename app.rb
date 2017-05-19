@@ -58,51 +58,46 @@ class Makers_BNB < Sinatra::Base
 
     @spaces = Space.all
 
-    #tag_filter = Tag.create(pool: params[:Pool], terrace: params[:Terrace], studio: params[:Studio], wifi: params[:Wifi],
-    #AC: params[:AC], appartment: params[:Appartment], close_to_beach: params[:Close_to_beach], balcony: params[:Balcony])
-
-    #@spaces = Space.all(if params[:pool == true, find all spaces with a pool and ignore all without]) #such that space.tags
     erb :'spaces/index'
 
   end
 
   post '/filtered' do
 
-    @spaces = Space.all
+    #@spaces = Space.all
 
-    if params[:Pool] == true
-    @spaces = Space.all(tag.pool => true)
+    array = [:Pool, :Terrace, :Studio, :Wifi, :aircon, :Appartment, :Close_to_beach, :Balcony]
+    array2 = []
+    @tags  = Tag.all
+    space_id_array = []
+    @spaces = []
+    @spaces2 = []
+
+    for i in 0...array.length
+      array2.push(array[i]) if params[array[i]] == "true"
     end
 
-    if params[:Terrace] == true
-    @spaces = Space.all(tag.terrace => true)
+    for i in 0...array2.length
+      @tags = @tags.all(array2[i].to_s.downcase.to_sym => "true")
     end
 
-    if params[:Studio] == true
-    @spaces = Space.all(tag.studio => true)
+    @tags.each do |x|
+      space_id_array.push(x.id)
     end
 
-    if params[:Wifi] == true
-    @spaces = Space.all(tag.wifi => true)
+    #p space_id_array
+
+    for i in 0...space_id_array.length
+      @spaces.push(Space.all(:id => space_id_array[i]))
     end
 
-    if params[:AC] == true
-    @spaces = Space.all(tag.ac => true) #AC
-    end
+    @spaces = @spaces.flatten
 
-    if params[:Appartment] == true
-    @spaces = Space.all(tag.appartment => true)
-    end
-
-    if params[:Close_to_beach] == true
-    @spaces = Space.all(tag.close_to_beach => true)
-    end
-
-    if params[:Balcony] == true
-    @spaces = Space.all(tag.balcony => true)
-    end
     p @spaces
+
+
     erb :'spaces/index'
+
 
   end
 
@@ -152,39 +147,38 @@ class Makers_BNB < Sinatra::Base
     # params[:tags].split.each { |tag|
     #   space.tags << Tag.first_or_create(name: tag)
     # }
-<<<<<<< HEAD
-    if postcode.valid?
+    if postcode
       p params[:Pool]
       p params[:Terrace]
       tag_ = Tag.create(pool: params[:Pool], terrace: params[:Terrace], studio: params[:Studio], wifi: params[:Wifi],
-      AC: params[:AC], appartment: params[:Appartment], close_to_beach: params[:Close_to_beach], balcony: params[:Balcony])
+      aircon: params[:aircon], appartment: params[:Appartment], close_to_beach: params[:Close_to_beach], balcony: params[:Balcony])
 
-=======
 
-    if postcode && date
->>>>>>> 8a5f7207d8156ae4f1fe7a273dcf80ba833f50b0
-      space = Space.create(user_id: current_user.id, name: params[:name],
-      city: params[:city], street: params[:street],
-      postcode: params[:postcode], price: params[:price],
-      description: params[:description], startDate: params[:start_date],
-      endDate: params[:end_date], tag: tag_)
+      if postcode && date
 
-      space.save
-<<<<<<< HEAD
-      tag_.save
-=======
-      flash.keep[:notice] = "Space successfully created"
->>>>>>> 8a5f7207d8156ae4f1fe7a273dcf80ba833f50b0
-      redirect '/spaces'
-    elsif date
-      flash.keep[:notice] = "Please enter a valid UK Postcode"
-      redirect '/spaces/new'
-    elsif postcode
-      flash.keep[:notice] = "Please Make sure your end date is after your start date"
-      redirect '/spaces/new'
-    else
-      flash.keep[:notice] = "Please Enter a Valid UK Postcode. Please Make sure your end date is after your start date"
-      redirect '/spaces/new'
+        space = Space.create(user_id: current_user.id, name: params[:name],
+        city: params[:city], street: params[:street],
+        postcode: params[:postcode], price: params[:price],
+        description: params[:description], startDate: params[:start_date],
+        endDate: params[:end_date], tag: tag_)
+
+        space.save
+
+        tag_.save
+
+        flash.keep[:notice] = "Space successfully created"
+
+        redirect '/spaces'
+      elsif date
+        flash.keep[:notice] = "Please enter a valid UK Postcode"
+        redirect '/spaces/new'
+      elsif postcode
+        flash.keep[:notice] = "Please Make sure your end date is after your start date"
+        redirect '/spaces/new'
+      else
+        flash.keep[:notice] = "Please Enter a Valid UK Postcode. Please Make sure your end date is after your start date"
+        redirect '/spaces/new'
+      end
     end
   end
 

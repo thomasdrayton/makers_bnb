@@ -2,7 +2,7 @@ require 'date'
 describe Tag do
 
     let!(:tag) do
-      Tag.create(pool: true, terrace: true, studio: false, wifi: false, AC: false, appartment: false, close_to_beach: false, balcony: false)
+      Tag.create(pool: true, terrace: true, studio: false, wifi: false, aircon: false, appartment: false, close_to_beach: false, balcony: false)
     end
 
     let!(:userowner) do
@@ -32,5 +32,7 @@ describe Tag do
   it 'has an ID' do
     expect(tag.id).not_to be_nil
   end
+
+  it
 
 end

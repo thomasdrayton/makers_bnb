@@ -18,9 +18,7 @@ class Space
   property :description, Text
   property :startDate, Date
   property :endDate, Date
-<<<<<<< HEAD
-  
-=======
+
 
   def self.validate_postcode(postcode)
     pc = UKPostcode.parse(postcode)
@@ -32,5 +30,5 @@ class Space
     date = true if date1 < date2
   end
 
->>>>>>> 8a5f7207d8156ae4f1fe7a273dcf80ba833f50b0
+
 end

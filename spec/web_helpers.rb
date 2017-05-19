@@ -105,7 +105,8 @@ def create_bad_date_space
   fill_in :start_date, with: Date.new(2001,1,2)
   fill_in :end_date, with: Date.new(1970,1,2)
   click_button 'Upload this space'
-  
+end
+
 def create_successful_space
  click_link 'Upload a new space'
   fill_in :name, with: 'Flat'

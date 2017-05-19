@@ -40,12 +40,9 @@ describe Space do
   end
 
   it 'Can be read through user' do
-<<<<<<< HEAD
-    p user.spaces
-    expect(user.spaces.length).to eq 1
-=======
+  
     expect(user.spaces.length).to eq 2
->>>>>>> 8a5f7207d8156ae4f1fe7a273dcf80ba833f50b0
+
   end
 
   it 'Knows if one date is before another' do
