@@ -34,6 +34,15 @@ def create_bad_space
   click_button 'Upload this space'
 end
 
+def new_sign_in(user)
+  visit '/'
+  click_link 'Sign In'
+  fill_in :email, with: user[:email]
+  fill_in :password, with: user[:pass]
+  click_button 'Sign in'
+  expect(page).to have_content "Hi #{user[:name]}"
+end
+
 def new_sign_up(user)
   visit '/'
   click_link 'Sign Up'
@@ -44,7 +53,7 @@ def new_sign_up(user)
   click_button 'Sign up'
 end
 
-def new_sign_in(user)
+def new_log_out(user_1)
   visit '/'
   expect(page).to have_link 'Sign In'
   expect(page).to have_link 'Sign Up'
@@ -59,7 +68,7 @@ end
 
 def new_log_out(user)
   click_button 'Log Out'
-  expect(page).to have_content "Goodbye #{user[:email]}"
+  expect(page).to have_content "Goodbye #{user[:name]}"
 end
 
 def create_successful_request(user)
@@ -109,7 +118,7 @@ end
 
 def create_successful_space
  click_link 'Upload a new space'
-  fill_in :name, with: 'Flat'
+  fill_in :name, with: 'Comfortable Flat'
   fill_in :city, with: 'London'
   fill_in :street, with: 'Comercial Street'
   fill_in :postcode, with: 'E1 6LT'
@@ -120,4 +129,41 @@ def create_successful_space
   click_button 'Upload this space'
   expect(page).to have_content "Space successfully created"
   expect(current_url).to eq 'http://www.example.com/spaces'
+end
+
+def create_unsuccessful_space
+ click_link 'Upload a new space'
+  fill_in :name, with: 'uncomfortable Flat'
+  fill_in :city, with: 'London'
+  fill_in :street, with: 'Comercial Street'
+  fill_in :postcode, with: 'E1 6LT'
+  fill_in :price, with: 72.07
+  fill_in :description, with: "It's a flat mate"
+  fill_in :start_date, with: "2016/11/11"
+  fill_in :end_date, with: "2017/04/03"
+  click_button 'Upload this space'
+  expect(page).to have_content "Space successfully created"
+  expect(current_url).to eq 'http://www.example.com/spaces'
+end
+
+def accept_request
+  click_link "View requests for my spaces"
+  expect(page).to have_content "Outstanding requests: 1"
+  expect(page).to have_selector(:link_or_button, 'accept')
+  expect(page).to have_selector(:link_or_button, 'decline')
+  click_button "accept"
+  expect(page).to have_content "You have accepted a request from "
+  expect(page).to have_content "Outstanding requests: 0"
+  expect(page).to have_content "Accepted requests: 1"
+end
+
+def decline_request
+  click_link "View requests for my spaces"
+  expect(page).to have_content "Outstanding requests: 1"
+  expect(page).to have_selector(:link_or_button, 'accept')
+  expect(page).to have_selector(:link_or_button, 'decline')
+  click_button "accept"
+  expect(page).to have_content "You have accepted a request from "
+  expect(page).to have_content "Outstanding requests: 0"
+  expect(page).to have_content "Accepted requests: 1"
 end

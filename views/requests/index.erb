@@ -1,0 +1,20 @@
+
+
+<% @requests.all(confirmed: 'false').each do |request| %>
+
+<div>
+<form method="post" action="/request_confirm_or_decline">
+  <p>Request made by:  <%= request.user.name %> </p>
+  <p>Request made for your: <%= request.space.name %> </p>
+  <p> Request Confirmed: <%= request.confirmed  %> </p>
+  <input type="hidden" name="request_id" value="<%= request.id %>">
+  <input type="submit" value="accept" name="response">
+  <input type="submit" value="decline" name="response">
+</form>
+</div>
+
+<% end %>
+
+<p>Accepted requests: <%= @requests.all(confirmed: 'accepted').count %><p>
+<p>Outstanding requests: <%= @requests.all(confirmed: 'false').count %><p>
+<p>Declined requests: <%= @requests.all(confirmed: 'declined').count %><p>
