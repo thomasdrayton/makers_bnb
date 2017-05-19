@@ -4,18 +4,17 @@ gem 'bcrypt'
 gem 'bootstrap'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
+gem 'envyable'
+gem 'mail'
 gem 'mail'
 gem 'pg'
 gem 'pry'
 gem 'rake'
-gem 'mail'
 gem 'sinatra'
 gem 'sinatra-flash'
 gem 'sinatra-partial'
-gem 'envyable'
-gem "uk_postcode"
 gem 'twilio-ruby'
-
+gem 'uk_postcode'
 
 group :test do
   gem 'capybara'

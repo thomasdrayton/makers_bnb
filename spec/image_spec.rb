@@ -4,11 +4,11 @@ describe Image do
   end
 
   let!(:space) do
-    Space.create(name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'E1 6LT', price: 72.06, description: "It's a flat mate", startDate: Date.new(2001,1,2), endDate: Date.new(2001,3,4), user_id: user.id)
+    Space.create(name: 'Flat', city: 'London', street: 'Comercial Street', postcode: 'E1 6LT', price: 72.06, description: "It's a flat mate", startDate: Date.new(2001, 1, 2), endDate: Date.new(2001, 3, 4), user_id: user.id)
   end
 
   let!(:image) do
-    Image.create(image_url: "http://imgur.com/gallery/zTFW4", space_id: space.id)
+    Image.create(image_url: 'http://imgur.com/gallery/zTFW4', space_id: space.id)
   end
 
   it 'Has an ID' do
