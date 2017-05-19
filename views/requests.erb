@@ -1,0 +1,8 @@
+<% if @requests.empty? %>
+  <%= "You have no requests at the moment" %>
+<% else %>
+<% @requests.each do |request| %>
+<%= request.user.name %> sent a request for <%= request.space.name %> in <%= request.space.city%> from  <%= request.startDateReq %> untill <%= request.endDateReq %>
+<br></br>
+<% end %>
+<% end %>

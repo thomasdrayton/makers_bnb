@@ -1,13 +1,12 @@
-require "uk_postcode"
+require 'uk_postcode'
 require 'date'
 class Space
-
   include DataMapper::Resource
 
   belongs_to :user
   has n, :requests
   has n, :images
-  has n, :tags, :through => Resource
+  has n, :tags, through: Resource
 
   property :id, Serial
   property :name, String
@@ -28,5 +27,4 @@ class Space
     date = false
     date = true if date1 < date2
   end
-
 end
