@@ -137,6 +137,7 @@ class Makers_BNB < Sinatra::Base
         file = params[:file][:tempfile]
         File.open("./public/images/#{filename}", 'wb') do |f|
           f.write(file.read)
+        end
           image = Image.create(image_url: filename, space_id: space.id)
           space.images << image
       else
