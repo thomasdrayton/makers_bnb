@@ -139,6 +139,7 @@ class Makers_BNB < Sinatra::Base
           f.write(file.read)
           image = Image.create(image_url: filename, space_id: space.id)
           space.images << image
+        end
       else
       end
 
