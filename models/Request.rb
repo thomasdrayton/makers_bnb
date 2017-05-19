@@ -9,7 +9,7 @@ class Request
   property :id, Serial
   property :startDateReq, Date
   property :endDateReq, Date
-  property :confirmed, Boolean
+  property :confirmed, String
 
   def possible?(space)
     d1 = DateTime.parse(startDateReq.to_s).to_date

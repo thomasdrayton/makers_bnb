@@ -63,12 +63,12 @@ class Makers_BNB < Sinatra::Base
     start_date = Date.parse(params[:start_date])
     end_date = Date.parse(params[:end_date])
     request = Request.create(startDateReq: start_date, endDateReq: end_date,
-                             user_id: params[:user_id], space_id: space.id, confirmed: false)
+    user_id: params[:user_id], space_id: space.id, confirmed: "false")
 
     if request.possible?(space)
       request.save
       request.text_owner_of(space, request)
-      flash.keep[:notice] = "Your booking was successfully made #{request.user.name}"
+      flash.keep[:notice] = "Your booking was successfully made #{current_user.name}"
       redirect '/spaces'
     else
 
@@ -77,8 +77,31 @@ class Makers_BNB < Sinatra::Base
     end
   end
 
+  post '/request_confirm_or_decline' do
+    request = Request.get(params[:request_id])
+    if params[:response] == "accept"
+      request.confirmed = 'accepted'
+      request.save
+      flash.keep[:notice] = "You have accepted a request from #{request.user.name}"
+    elsif params[:response] == "decline"
+      request.confirmed = 'declined'
+      request.save
+      flash.keep[:notice] = "You have declined a request from #{request.user.name}"
+    elsif params[:response].nil?
+      flash.keep[:notice] = "Please enter a valid response to the request from #{request.user.name}"
+    end
+    redirect '/requests'
+  end
+
+
   get'/spaces/new' do
     erb :'spaces/new'
+  end
+
+  get '/requests' do
+    redirect_if_not_signed_in
+    @requests = current_user.spaces.requests
+    erb :'requests/index'
   end
 
   get '/requests/new/:id' do
@@ -116,9 +139,7 @@ class Makers_BNB < Sinatra::Base
           f.write(file.read)
           image = Image.create(image_url: filename, space_id: space.id)
           space.images << image
-        end
       else
-        p 'no params file'
       end
 
       flash.keep[:notice] = 'Space successfully created'
@@ -137,9 +158,9 @@ class Makers_BNB < Sinatra::Base
   end
 
   delete '/sessions' do
-    email = current_user.email
+    name = current_user.name
     session[:user_id] = nil
-    flash.keep[:notice] = "Goodbye #{email}"
+    flash.keep[:notice] = "Goodbye #{name}"
     redirect '/sessions/logout'
   end
 
@@ -147,21 +168,4 @@ class Makers_BNB < Sinatra::Base
     erb :'sessions/logout'
   end
 
-  helpers do
-    def send_mail(mail_subject, mail_body)
-      mail = Mail.new do
-        from    'DreamTeam@makersbnb.co.uk'
-        to      'jaiye.s@gmail.com'
-        subject mail_subject
-        body    mail_body
-      end
-      mail.delivery_method :sendmail
-      mail.deliver
-    end
-
-    def current_user
-      @current_user ||= User.get(session[:user_id])
-    end
-    run! if app_file == $PROGRAM_NAME
-  end
 end

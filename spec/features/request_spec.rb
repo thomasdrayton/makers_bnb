@@ -6,6 +6,7 @@ feature 'Request creation' do
     new_sign_up(user_1)
     create_successful_space
     create_successful_request(user_1)
+    new_log_out(user_1)
   end
 
   scenario 'unsuccessfully' do
@@ -15,5 +16,6 @@ feature 'Request creation' do
     new_sign_up(user_1)
     create_successful_space
     create_unsuccessful_request(user_1)
+    new_log_out(user_1)
   end
 end
