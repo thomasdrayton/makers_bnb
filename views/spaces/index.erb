@@ -12,7 +12,13 @@
   <div class="col-sm-4 col-md-4">
     <p>This property belongs to <%= space.user.name %></p>
     <p><%= space.name %></p>
-    <img src="<= space.image.first =>" alt ="">
+
+    <% unless space.images.count == 0 %>
+      <div class="spaceImages">
+      <img src="/images/<%= space.images.first.image_url %>" alt ="">
+      </div>
+    <% end %>
+
     <p><%= space.city %></p>
     <p>Price per night: £ <%= space.price %></p>
     <p>Number of images: <%= space.images.count %></p>
