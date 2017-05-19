@@ -51,7 +51,6 @@ class Makers_BNB < Sinatra::Base
 
   get '/users/main' do
     erb :'users/main'
-    # Account page. Create space and Rent Space links
   end
 
   get '/spaces' do
@@ -78,15 +77,6 @@ class Makers_BNB < Sinatra::Base
     end
   end
 
-  get '/space/rent' do
-    # Click on a space you want to rent. Get taken to this form where you fill in what dates you want to rent or calander
-  end
-
-  post'rent_request' do
-    # Post form for rent request
-    # Redirect to /users/main
-  end
-
   get'/spaces/new' do
     erb :'spaces/new'
   end
@@ -94,6 +84,11 @@ class Makers_BNB < Sinatra::Base
   get '/requests/new/:id' do
     @space = Space.get(params[:id])
     erb :'requests/new'
+  end
+
+  get '/requests' do
+    @requests = current_user.spaces.requests
+    erb :'/requests'
   end
 
   post'/spaces' do
@@ -113,20 +108,20 @@ class Makers_BNB < Sinatra::Base
                            description: params[:description], startDate: params[:start_date],
                            endDate: params[:end_date])
       space.save
-      
-        if params[:file]
-          filename = params[:file][:filename]
-          file = params[:file][:tempfile]
-          File.open("./public/images/#{filename}", 'wb') do |f|
+
+      if params[:file]
+        filename = params[:file][:filename]
+        file = params[:file][:tempfile]
+        File.open("./public/images/#{filename}", 'wb') do |f|
           f.write(file.read)
           image = Image.create(image_url: filename, space_id: space.id)
           space.images << image
-          end
-        else
-          p 'no params file'
         end
+      else
+        p 'no params file'
+      end
 
-      flash.keep[:notice] = "Space successfully created"
+      flash.keep[:notice] = 'Space successfully created'
 
       redirect '/spaces'
     elsif date

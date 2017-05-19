@@ -8,6 +8,27 @@ def sign_up
   click_button 'Sign up'
 end
 
+def sign_up_2
+  visit '/'
+  click_link 'Sign Up'
+  fill_in :name, with: 'Tom'
+  fill_in :email, with: 'Test.email@test.com'
+  fill_in :password, with: 'Password1234'
+  fill_in :password_confirmation, with: 'Password1234'
+  click_button 'Sign up'
+end
+
+def sign_out
+  click_button 'Log Out'
+end
+
+def sign_in(user)
+  click_link "Sign In"
+  fill_in :email, with: user[:email]
+  fill_in :password, with: user[:pass]
+  click_button 'Sign in'
+end
+
 def create_space
   click_link 'Upload a new space'
   fill_in :name, with: 'Flat'
